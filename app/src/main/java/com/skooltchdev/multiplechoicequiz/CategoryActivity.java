@@ -1,7 +1,9 @@
 package com.skooltchdev.multiplechoicequiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -11,9 +13,7 @@ import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
     private QuizModel qModel1 = new QuizModel("Q1",
-            new String[]{
-                    "How Many Stars?:1:2:3:4"
-    });
+            new String[]{"How Many Stars?:1:2:3:4"});
     ScrollView scrollView;
     LinearLayout linearLayout;
     List<QuizModel> quizModels = new ArrayList<>();
@@ -22,33 +22,32 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         quizModels.add(qModel1);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_categorys);
         scrollView = (ScrollView) findViewById(R.id.scroll);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        scrollView.addView(linearLayout);
         System.out.println(quizModels.size());
-        for (QuizModel quizModel : quizModels) {
+        for (final QuizModel quizModel : quizModels) {
             Button button = new Button(getApplicationContext());
             button.setText (quizModel.getTitle());
             button.setId(i);
             button.setTextSize(15);
             button.setWidth(1000);
-            button.setHeight(100);
+            button.setHeight(150);
             //button.getBackground().setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.DARKEN);
             linearLayout.addView(button);
-            /*button.setOnClickListener(new View.OnClickListener() {
+            button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateMatch.add(updateMatchEntry);
-                    assert getFragmentManager() != null;
-                    getFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, new EditActivity())
-                            .commit();
+                    QuizActivity.setQuizModel(quizModel);
+                    Intent intent = new
+                            Intent(CategoryActivity.this, QuizActivity.class);
+                    startActivity(intent);
                 }
-            });*/
+            });
+            i++;
         }
-        setContentView(R.layout.activity_categorys);
+
     }
 
 }

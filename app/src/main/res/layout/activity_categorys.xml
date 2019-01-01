@@ -19,6 +19,6 @@
                 android:paddingBottom="15dp"
                 android:text="Categorys"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
         </LinearLayout>
+
     </ScrollView>
