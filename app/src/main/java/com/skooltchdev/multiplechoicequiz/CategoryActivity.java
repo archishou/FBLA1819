@@ -34,7 +34,6 @@ public class CategoryActivity extends AppCompatActivity {
             button.setTextSize(15);
             button.setWidth(1000);
             button.setHeight(150);
-            //button.getBackground().setColorFilter(Color.parseColor("#DAA520"), PorterDuff.Mode.DARKEN);
             linearLayout.addView(button);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
