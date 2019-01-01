@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.skooltchdev.multiplechoicequiz.QuizActivity">
+    tools:context="com.skooltchdev.multiplechoicequiz.CategoryActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -46,14 +46,14 @@
 
 
     <Button
+        android:id="@+id/choice1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="bird"
-        android:background="#0091EA"
-        android:textColor="#fff"
-        android:padding="8dp"
         android:layout_marginBottom="24dp"
-        android:id="@+id/choice1"/>
+        android:background="#0091EA"
+        android:padding="8dp"
+        android:text="bird"
+        android:textColor="#fff" />
 
     <Button
         android:layout_width="match_parent"
@@ -74,6 +74,16 @@
         android:padding="8dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/choice3"/>
+
+    <Button
+        android:id="@+id/choice4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="#0091EA"
+        android:padding="8dp"
+        android:text="rock"
+        android:textColor="#fff" />
 
     <Button
         android:layout_width="match_parent"
