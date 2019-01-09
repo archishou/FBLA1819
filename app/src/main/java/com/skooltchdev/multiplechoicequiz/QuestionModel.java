@@ -1,19 +1,19 @@
 package com.skooltchdev.multiplechoicequiz;
 
 
-public class QuizModel {
+public class QuestionModel {
     private String title;
     // Formatted Question, Answer.
     // Answer is formatted is the following
     // "Answer:C2:C3:C4"
     private String[] questionsAnswers;
 
-    public QuizModel(String title, String[] questionsAnswers) {
-        this.title = title;
+    public QuestionModel(String question, String[] questionsAnswers) {
+        this.title = question;
         this.questionsAnswers = questionsAnswers;
     }
 
-    public String getTitle() {
+    public String getQuestion() {
         return title;
     }
 
