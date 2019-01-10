@@ -39,6 +39,9 @@
         </activity>
 
         <activity android:name=".Activities.CategoriesActivity"/>
+        <activity android:name=".Activities.SignInActivity"/>
+        <activity android:name=".Activities.ForgotPasswordActivity"/>
+        <activity android:name=".Activities.RegisterActivity"/>
     </application>
 
 </manifest>
