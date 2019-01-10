@@ -8,7 +8,7 @@ import android.content.Intent;
  * Project: FBLA1819
  */
 public class Utils {
-    public static void switchAcitivty(Context context, Class<?> c) {
+    public static void switchActivity(Context context, Class<?> c) {
         Intent intent = new Intent(context, c);
         context.startActivity(intent);
     }

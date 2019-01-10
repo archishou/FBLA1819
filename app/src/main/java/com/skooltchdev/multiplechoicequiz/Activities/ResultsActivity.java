@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Resources.Utils;
 
 /**
  * Created by Archishmaan Peyyety on 1/9/19.
@@ -29,7 +30,7 @@ public class ResultsActivity extends AppCompatActivity {
         while (i < resultsModel.getCorrectAnswer().size()){
             TableRow tableRow = new TableRow(getApplicationContext());
 
-            TextView questionNumber = new TextView(getApplicationContext());
+            final TextView questionNumber = new TextView(getApplicationContext());
             questionNumber.setText(String.valueOf(i + 1));
 
             TextView chosenAnswer = new TextView(getApplicationContext());
@@ -48,10 +49,13 @@ public class ResultsActivity extends AppCompatActivity {
             tableRow.addView(chosenAnswer);
             tableRow.addView(correctAnswer);
             tableRow.setMinimumHeight(150);
+            final int finalI = i;
             tableRow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    DetailActivity.setQuestionNumber(Integer.parseInt(String.valueOf(finalI + 1)));
+                    DetailActivity.setResultsModel(resultsModel);
+                    Utils.switchActivity(getApplicationContext(), DetailActivity.class);
                 }
             });
             mTableLayout.addView(tableRow);

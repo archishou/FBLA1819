@@ -10,18 +10,29 @@ import java.util.List;
 public class ResultsModel {
     List<String> correctAnswer, givenAnswer;
     List<String> correctAnswerLetter, givenAnswerLetter;
+    List<String> questions;
     private int score = 0;
     public ResultsModel () {
         correctAnswer = new ArrayList<>();
         givenAnswer = new ArrayList<>();
         correctAnswerLetter = new ArrayList<>();
         givenAnswerLetter = new ArrayList<>();
+        questions = new ArrayList<>();
     }
-    public void addEntry(String correct, String chosen, String letterCorrect, String letterGiven) {
+    public void addEntry(String correct, String chosen, String letterCorrect, String letterGiven, String question) {
         correctAnswer.add(correct);
         givenAnswer.add(chosen);
         correctAnswerLetter.add(letterCorrect);
         givenAnswerLetter.add(letterGiven);
+        questions.add(question);
+    }
+
+    public List<String> getQuestion() {
+        return questions;
+    }
+
+    public void setQuestion(List<String> question) {
+        this.questions = question;
     }
 
     public List<String> getCorrectAnswer() {

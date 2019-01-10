@@ -30,6 +30,7 @@ public class TestActivity extends AppCompatActivity {
     private Button mButtonChoice3;
     private Button mButtonChoice4;
     private Button submit, quit;
+    private String question;
     private Button mSelectedButton;
     private ResultsModel resultsModel;
     private String answer;
@@ -82,12 +83,12 @@ public class TestActivity extends AppCompatActivity {
                 else chosenAnswerLetter = "D";
                 resultsModel.setScore(score);
                 resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
-                        correctAnswerLetter, chosenAnswerLetter);
+                        correctAnswerLetter, chosenAnswerLetter, question);
                 mScoreView.setText(String.valueOf(score));
                 if (!endOfTest()) updateQuestion(mQuestionNumber);
                 else {
                     ResultsActivity.setResultsModel(resultsModel);
-                    Utils.switchAcitivty(getApplicationContext(), ResultsActivity.class);
+                    Utils.switchActivity(getApplicationContext(), ResultsActivity.class);
                     Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
                 }
             }
@@ -95,13 +96,13 @@ public class TestActivity extends AppCompatActivity {
     }
     private void updateQuestion(int questionID){
         int[] ran = genNumbers();
-
         mQuestionView.setText(testModel.getQuestions().get(questionID).getQuestion());
         mButtonChoice1.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[0]]);
         mButtonChoice2.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[1]]);
         mButtonChoice3.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[2]]);
         mButtonChoice4.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[3]]);
         answer = testModel.getQuestions().get(questionID).getQuestionsAnswers()[0];
+        question = mQuestionView.getText().toString();
         if (mButtonChoice1.getText().equals(answer)) correctAnswerLetter = "A";
         else if (mButtonChoice2.getText().equals(answer)) correctAnswerLetter = "B";
         else if (mButtonChoice3.getText().equals(answer)) correctAnswerLetter = "C";

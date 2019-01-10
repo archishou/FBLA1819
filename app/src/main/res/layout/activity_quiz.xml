@@ -105,25 +105,28 @@
             android:textSize="20sp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp" />
+            <!--android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"-->
 
-        <Button
-            android:id="@+id/quit_button"
-            android:layout_width="132dp"
-            android:layout_height="62dp"
-            android:layout_alignTop="@+id/submit_button"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="0dp"
-            android:layout_toEndOf="@+id/submit_button"
-            android:layout_toRightOf="@+id/submit_button"
-            android:background="#ff0000"
-            android:text="QUIT"
-            android:textSize="20sp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0dp" />
+    <Button
+        android:id="@+id/quit_button"
+        android:layout_width="132dp"
+        android:layout_height="62dp"
+        android:layout_alignTop="@+id/submit_button"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="0dp"
+        android:layout_toEndOf="@+id/submit_button"
+        android:layout_toRightOf="@+id/submit_button"
+        android:background="#ff0000"
+        android:text="QUIT"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp" />
 
-    </RelativeLayout>
+</RelativeLayout>
 
 </LinearLayout>
