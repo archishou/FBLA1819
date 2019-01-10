@@ -13,19 +13,28 @@ import com.skooltchdev.multiplechoicequiz.R;
  * Project: FBLA1819
  */
 public class WelcomeActivity extends AppCompatActivity {
-    private Button mContinue;
+    private Button mAccountButton, mNewAccount;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         //FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_welcome);
-        mContinue = (Button) findViewById(R.id.accountButton);
-        mContinue.setOnClickListener(new View.OnClickListener() {
+        mAccountButton = (Button) findViewById(R.id.accountButton);
+        mNewAccount = (Button)findViewById(R.id.newAccountButton);
+        mAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(intent);
             }
         });
+        mNewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
