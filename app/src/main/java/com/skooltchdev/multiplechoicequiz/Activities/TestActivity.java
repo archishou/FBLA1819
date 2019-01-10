@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Tests.AccoutingTest;
+import com.skooltchdev.multiplechoicequiz.Tests.AcoutingTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         resultsModel = new ResultsModel();
 
-        testModel = new AccoutingTest().getModel();
+        testModel = new AcoutingTest().getModel();
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestionView = (TextView)findViewById(R.id.question);
         mButtonChoice1 = (Button)findViewById(R.id.choice1);

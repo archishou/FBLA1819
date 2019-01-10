@@ -10,10 +10,10 @@ import java.util.List;
  * Created by Archishmaan Peyyety on 1/9/19.
  * Project: FBLA1819
  */
-public class AccoutingTest {
+public class AcoutingTest {
     List<QuestionModel> questions;
     static TestModel model;
-    public AccoutingTest () {
+    public AcoutingTest() {
         questions = new ArrayList<>();
 
         questions.add(new QuestionModel("The five administrative regions of FBLA include all but which of the following?",
