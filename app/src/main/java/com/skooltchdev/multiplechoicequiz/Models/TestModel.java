@@ -8,11 +8,21 @@ import java.util.List;
  */
 public class TestModel {
     String title;
+    String branch;
     List<QuestionModel> questions;
 
-    public TestModel(String title, List<QuestionModel> questions) {
+    public TestModel(String branch, String title, List<QuestionModel> questions) {
         this.title = title;
         this.questions = questions;
+        this.branch = branch;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public String getTitle() {

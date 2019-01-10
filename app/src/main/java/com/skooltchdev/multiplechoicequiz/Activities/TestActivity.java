@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +92,8 @@ public class TestActivity extends AppCompatActivity {
                     mScoreView.setText(String.valueOf(score));
                     if (!endOfTest()) updateQuestion(mQuestionNumber);
                     else {
+                        if (Firebase.readBranchData(testModel.getBranch()) > score)
+                            Firebase.writeBranchData(testModel.getBranch(), score);
                         ResultsActivity.setResultsModel(resultsModel);
                         Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
                         startActivity(intent);

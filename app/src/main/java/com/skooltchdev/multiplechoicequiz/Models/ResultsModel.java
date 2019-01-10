@@ -19,7 +19,8 @@ public class ResultsModel {
         givenAnswerLetter = new ArrayList<>();
         questions = new ArrayList<>();
     }
-    public void addEntry(String correct, String chosen, String letterCorrect, String letterGiven, String question) {
+    public void addEntry(String correct, String chosen, String letterCorrect,
+                         String letterGiven, String question) {
         correctAnswer.add(correct);
         givenAnswer.add(chosen);
         correctAnswerLetter.add(letterCorrect);

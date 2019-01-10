@@ -42,9 +42,6 @@ public class Firebase {
                 });
         return isAuth;
     }
-    public static boolean emailExists(String email) {
-        return false;
-    }
     public static boolean addUser(String email, String password, String name, final Activity activity) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -95,10 +92,11 @@ public class Firebase {
         databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
 
+
+
     private static int getScore() {
         return score;
     }
-
     private static void setScore(int score) {
         Firebase.score = score;
     }
