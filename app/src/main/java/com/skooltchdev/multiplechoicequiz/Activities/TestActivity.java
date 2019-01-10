@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
