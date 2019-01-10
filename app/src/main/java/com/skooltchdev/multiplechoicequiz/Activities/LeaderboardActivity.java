@@ -22,7 +22,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     private TextView mathU, mathS;
     private TextView parlimentU, parlimentS;
 
-    private static LeaderboardModel leaderboardModel;
+    private static LeaderboardModel leaderboardModel =
+            new LeaderboardModel();
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);

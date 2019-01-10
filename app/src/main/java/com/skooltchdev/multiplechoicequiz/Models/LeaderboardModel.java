@@ -21,6 +21,10 @@ public class LeaderboardModel {
         this.mU = mU;
         this.histFBLAU = histFBLAU;
     }
+    public LeaderboardModel() {
+        new LeaderboardModel("5", "3", "2", "3",
+                "3", "h", "b", "o", "o", "o");
+    }
 
     public String getAccountingScore() {
         return accountingScore;

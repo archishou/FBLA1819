@@ -20,6 +20,7 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_categorys);
         accouting = (Button) findViewById(R.id.accouting_cat_button);
+        home = (Button) findViewById(R.id.goto_home);
         accouting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
