@@ -56,10 +56,7 @@ public class Firebase {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
                         else {
-                            for (String column : Database.columnNames) {
-                                databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
-                            }
-                            System.out.println("Test: " + getBranchData("account"));
+                            for (String column : Database.columnNames) databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
                         }
                         successful = task.isSuccessful();
                         setmSuccessful(successful);
@@ -73,7 +70,7 @@ public class Firebase {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public static int getBranchData(final String branch) {
+    public static int readBranchData(final String branch) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
@@ -90,6 +87,9 @@ public class Firebase {
             }
         });
         return getScore();
+    }
+    public static void writeBranchData(final String branch) {
+
     }
 
     private static int getScore() {
