@@ -57,7 +57,7 @@ public class ResultsActivity extends AppCompatActivity {
             mTableLayout.addView(tableRow);
             i++;
         }
-        mScoreView.setText(String.valueOf(resultsModel.getScore()));
+        mScoreView.setText("Score: " + String.valueOf(resultsModel.getScore()));
     }
 
     public static ResultsModel getResultsModel() {

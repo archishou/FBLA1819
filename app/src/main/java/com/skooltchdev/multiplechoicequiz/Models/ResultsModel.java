@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultsModel {
     List<String> correctAnswer, givenAnswer;
     List<String> correctAnswerLetter, givenAnswerLetter;
-    int score;
+    private int score = 0;
     public ResultsModel () {
         correctAnswer = new ArrayList<>();
         givenAnswer = new ArrayList<>();
