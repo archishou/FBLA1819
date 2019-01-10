@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
+
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Utils;
+import com.skooltchdev.multiplechoicequiz.Tests.AccoutingTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,8 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         resultsModel = new ResultsModel();
-        List<QuestionModel> questionModels = new ArrayList<>();
-        questionModels.add(new QuestionModel("How Are you?", new String[]{"Bad", "Med", "Sed", "med"}));
-        questionModels.add(new QuestionModel("How r u?", new String[]{"Bad", "Med", "Sed", "med"}));
-        testModel = new TestModel("How Are You", questionModels);
+
+        testModel = new AccoutingTest().getModel();
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestionView = (TextView)findViewById(R.id.question);
         mButtonChoice1 = (Button)findViewById(R.id.choice1);
