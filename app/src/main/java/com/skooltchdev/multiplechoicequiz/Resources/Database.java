@@ -5,5 +5,5 @@ package com.skooltchdev.multiplechoicequiz.Resources;
  * Project: FBLA1819
  */
 public class Database {
-    public static String[] columnNames = new String[]{"account", "intro", "parliment", "math", "hist"};
+    public static String[] columnNames = new String[]{"account", "intro", "parliment", "math", "hist", "email"};
 }

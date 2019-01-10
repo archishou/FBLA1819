@@ -27,6 +27,7 @@ public class Firebase {
     static boolean isAuth;
     static int score, highScore;
     static boolean mSuccessful;
+    static String eMail;
     public static boolean signIn(String userName, String password, Activity activity)  {
         FirebaseApp.initializeApp(activity.getApplicationContext());
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -39,7 +40,7 @@ public class Firebase {
         });
         return ismSuccessful();
     }
-    public static boolean addUser(String email, String password, String name, final Activity activity) {
+    public static boolean addUser(final String email, String password, String name, final Activity activity) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
@@ -51,6 +52,7 @@ public class Firebase {
                         if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
                         else {
                             for (String column : Database.columnNames) databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
+                            writeBranchData("email", email);
                         }
                         successful = task.isSuccessful();
                         setmSuccessful(successful);
@@ -88,6 +90,12 @@ public class Firebase {
         databaseReference = firebaseDatabase.getReference("Users");
         databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
+    public static void writeBranchData(final String branch, final String branchData) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
+    }
 
     public static int getHighScore(final String branch)   {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -102,15 +110,46 @@ public class Firebase {
                     if(score <= userScore) score = userScore;
                 }
                 setHighScore(score);
-                System.out.println("After Score: " + score);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        System.out.println("Get Score: " + getHighScore());
         return getHighScore();
+    }
+
+    public static String getHighScoreUser(final String branch)  {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int score = 0;
+                for(DataSnapshot user: dataSnapshot.getChildren())  {
+                    int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
+                    if(score <= userScore)  {
+                        score = userScore;
+                        seteMail(user.child("eMail").getValue(String.class).substring(0,user.child("eMail").getValue(String.class).indexOf('@')));
+                    }
+                }
+                setHighScore(score);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return geteMail();
+    }
+
+    public static String geteMail() {
+        return eMail;
+    }
+
+    public static void seteMail(String eMail) {
+        Firebase.eMail = eMail;
     }
 
     private static int getHighScore() {

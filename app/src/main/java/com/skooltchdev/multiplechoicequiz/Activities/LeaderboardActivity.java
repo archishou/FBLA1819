@@ -55,6 +55,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathS = (TextView) findViewById(R.id.math_score_1);
 
         leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
+        leaderboardModel.setAccountingU(String.valueOf(Firebase.getHighScoreUser("account")));
         actU.setText(leaderboardModel.getAccountingU());
         introU.setText(leaderboardModel.getiFBLAU());
         mathU.setText(leaderboardModel.getmU());
