@@ -92,7 +92,7 @@ public class TestActivity extends AppCompatActivity {
                     mScoreView.setText(String.valueOf(score));
                     if (!endOfTest()) updateQuestion(mQuestionNumber);
                     else {
-                        if (Firebase.readBranchData(testModel.getBranch()) > score)
+                        if (Firebase.readBranchData(testModel.getBranch()) < score)
                             Firebase.writeBranchData(testModel.getBranch(), score);
                         ResultsActivity.setResultsModel(resultsModel);
                         Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);

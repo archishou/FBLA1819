@@ -36,7 +36,7 @@ public class AcoutingTest {
                         "The full text of the motion or resolution must be submitted.",
                         "It must be in writing."}));
 
-        model = new TestModel("parliment", "Parliamentary Procedures", questions);
+        model = new TestModel("account", "Accountin 1", questions);
     }
 
     public TestModel getModel() {

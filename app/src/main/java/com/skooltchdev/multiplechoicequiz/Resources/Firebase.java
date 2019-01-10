@@ -27,20 +27,17 @@ public class Firebase {
     static boolean isAuth;
     static int score;
     static boolean mSuccessful;
-    public static boolean isAuth(String userName, String password, Activity activity)  {
+    public static boolean signIn(String userName, String password, Activity activity)  {
         FirebaseApp.initializeApp(activity.getApplicationContext());
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users");
-        firebaseAuth.signInWithEmailAndPassword(userName, password)
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) isAuth = true;
-                        else isAuth = false;
-                    }
-                });
-        return isAuth;
+        firebaseAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                setmSuccessful(task.isSuccessful());
+            }
+        });
+        return ismSuccessful();
     }
     public static boolean addUser(String email, String password, String name, final Activity activity) {
         firebaseDatabase = FirebaseDatabase.getInstance();

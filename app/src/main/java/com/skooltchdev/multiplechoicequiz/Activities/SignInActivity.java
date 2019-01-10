@@ -45,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (usernameE.getText().toString().equals("") || passwordE.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(), "Please enter all information.", Toast.LENGTH_LONG).show();
                 else {
-                    if (Firebase.isAuth(usernameE.getText().toString(), passwordE.getText().toString(), signInActivity)) {
+                    if (Firebase.signIn(usernameE.getText().toString(), passwordE.getText().toString(), signInActivity)) {
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         username = usernameE.getText().toString();
