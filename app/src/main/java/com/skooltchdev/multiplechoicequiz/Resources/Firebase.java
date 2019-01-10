@@ -131,7 +131,7 @@ public class Firebase {
                     int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
                     if(score <= userScore)  {
                         score = userScore;
-                        seteMail(user.child("eMail").getValue(String.class).substring(0,user.child("eMail").getValue(String.class).indexOf('@')));
+                        seteMail(user.child("email").getValue(String.class).substring(0,user.child("email").getValue(String.class).indexOf('@')));
                     }
                 }
                 setHighScore(score);
