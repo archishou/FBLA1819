@@ -77,8 +77,8 @@ public class TestActivity extends AppCompatActivity {
                 for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
                 if (mSelectedButton.getText().equals(answer)) score++;
                 if (mSelectedButton.getText().equals(mButtonChoice1.getText())) chosenAnswerLetter = "A";
-                if (mSelectedButton.getText().equals(mButtonChoice2.getText())) chosenAnswerLetter = "B";
-                if (mSelectedButton.getText().equals(mButtonChoice3.getText())) chosenAnswerLetter = "C";
+                else if (mSelectedButton.getText().equals(mButtonChoice2.getText())) chosenAnswerLetter = "B";
+                else if (mSelectedButton.getText().equals(mButtonChoice3.getText())) chosenAnswerLetter = "C";
                 else chosenAnswerLetter = "D";
                 resultsModel.setScore(score);
                 resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
