@@ -56,8 +56,10 @@ public class Firebase {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
                         else {
-                            for (String column : Database.columnNames)
-                            databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
+                            for (String column : Database.columnNames) {
+                                databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
+                            }
+                            System.out.println("Test: " + getColumnData("account"));
                         }
                         successful = task.isSuccessful();
                         setmSuccessful(successful);
@@ -71,15 +73,15 @@ public class Firebase {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public int getColumnData(final String column) {
+    public static int getColumnData(final String branch) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(getUser().getUid()).child(column).getValue(Integer.class) != null)
-                setScore(dataSnapshot.child(getUser().getUid()).child(column).getValue(Integer.class));
+                if (dataSnapshot.child(getUser().getUid()).child(branch).getValue(Integer.class) != null)
+                setScore(dataSnapshot.child(getUser().getUid()).child(branch).getValue(Integer.class));
             }
 
             @Override
