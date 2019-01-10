@@ -72,23 +72,40 @@ public class TestActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
-                if (mSelectedButton.getText().equals(answer)) score++;
-                if (mSelectedButton.getText().equals(mButtonChoice1.getText())) chosenAnswerLetter = "A";
-                else if (mSelectedButton.getText().equals(mButtonChoice2.getText())) chosenAnswerLetter = "B";
-                else if (mSelectedButton.getText().equals(mButtonChoice3.getText())) chosenAnswerLetter = "C";
-                else chosenAnswerLetter = "D";
-                resultsModel.setScore(score);
-                resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
-                        correctAnswerLetter, chosenAnswerLetter, question);
-                mScoreView.setText(String.valueOf(score));
-                if (!endOfTest()) updateQuestion(mQuestionNumber);
+                for (Button b : choices) b.setBackgroundColor(Color.rgb(0, 145, 234));
+                if (mSelectedButton == null)
+                    Toast.makeText(getApplicationContext(), "Please Select an Answer.", Toast.LENGTH_LONG).show();
                 else {
-                    ResultsActivity.setResultsModel(resultsModel);
-                    Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
+                    if (mSelectedButton.getText().equals(answer)) score++;
+                    if (mSelectedButton.getText().equals(mButtonChoice1.getText()))
+                        chosenAnswerLetter = "A";
+                    else if (mSelectedButton.getText().equals(mButtonChoice2.getText()))
+                        chosenAnswerLetter = "B";
+                    else if (mSelectedButton.getText().equals(mButtonChoice3.getText()))
+                        chosenAnswerLetter = "C";
+                    else chosenAnswerLetter = "D";
+
+                    resultsModel.setScore(score);
+                    resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
+                            correctAnswerLetter, chosenAnswerLetter, question);
+                    mScoreView.setText(String.valueOf(score));
+                    if (!endOfTest()) updateQuestion(mQuestionNumber);
+                    else {
+                        ResultsActivity.setResultsModel(resultsModel);
+                        Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
+                    }
+                    mSelectedButton = null;
                 }
+            }
+        });
+        quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ResultsActivity.setResultsModel(resultsModel);
+                Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
             }
         });
     }
