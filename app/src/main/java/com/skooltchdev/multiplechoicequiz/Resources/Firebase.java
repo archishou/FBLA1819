@@ -49,12 +49,16 @@ public class Firebase {
                     boolean successful;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.",
-                                Toast.LENGTH_SHORT).show();
+                        if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
+                        else {
+                            for (String column : Database.columnNames)
+                            databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
+                        }
                         successful = task.isSuccessful();
                         setmSuccessful(successful);
                     }
                 });
+
         return ismSuccessful();
     }
 
