@@ -5,6 +5,7 @@ package com.skooltchdev.multiplechoicequiz.Resources;
  * Project: FBLA1819
  */
 public class Utils {
+    public static void doFacebook() {
 
-
+    }
 }

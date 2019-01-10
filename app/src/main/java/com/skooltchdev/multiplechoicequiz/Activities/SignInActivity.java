@@ -16,24 +16,18 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  * Project: FBLA1819
  */
 public class SignInActivity extends AppCompatActivity {
-    private Button signIn, forgotPassword, signUp;
-    private EditText username, password;
+    private static String username;
+    private Button signIn, signUp;
+    private EditText usernameE, passwordE;
+
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_signin);
-        signIn = (Button) findViewById(R.id.signInButton);
-        forgotPassword = (Button) findViewById(R.id.forgotPasswordButton);
+        signIn = (Button) findViewById(R.id.signInButton_Signin);
         signUp = (Button) findViewById(R.id.noAccountButton);
-        username = (EditText) findViewById(R.id.userNameEditText);
-        password = (EditText) findViewById(R.id.passwordEditText);
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
-                startActivity(intent);
-            }
-        });
+        usernameE = (EditText) findViewById(R.id.userNameEditText);
+        passwordE = (EditText) findViewById(R.id.passwordEditText);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,17 +38,23 @@ public class SignInActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("") || password.getText().toString().equals(""))
+                if (usernameE.getText().toString().equals("") || passwordE.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(), "Please enter all information.", Toast.LENGTH_LONG).show();
                 else {
-                    if (Firebase.isAuth(username.getText().toString(), password.getText().toString())) {
+                    if (Firebase.isAuth(usernameE.getText().toString(), passwordE.getText().toString())) {
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
+                        username = usernameE.getText().toString();
                     }
                     else Toast.makeText(getApplicationContext(), "Incorrect Credentials.", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
+
+    }
+
+    public static String getUsername() {
+        return username;
     }
 }
