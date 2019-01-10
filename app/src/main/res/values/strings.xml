@@ -24,4 +24,20 @@
     <string name="leaderboards">Leaderboards</string>
     <string name="share_score">Share your score</string>
     <string name="settings">Settings</string>
+
+
+    <string name="parliment_username">Username</string>
+    <string name="account_usernmae">Username</string>
+    <string name="math_username">Username</string>
+    <string name="hist_username">Username</string>
+    <string name="into_username">Username</string>
+
+    <string name="parliment_score">Username</string>
+    <string name="account_score">Username</string>
+    <string name="math_score">Username</string>
+    <string name="hist_score">Username</string>
+    <string name="into_score">Username</string>
+
+
+
 </resources>

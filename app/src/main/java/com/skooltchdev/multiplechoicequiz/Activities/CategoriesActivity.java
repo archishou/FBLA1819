@@ -14,7 +14,7 @@ import com.skooltchdev.multiplechoicequiz.Tests.AcoutingTest;
  * Project: FBLA1819
  */
 public class CategoriesActivity extends AppCompatActivity {
-    private Button accouting, parliment, intro, hist, math;
+    private Button accouting, parliment, intro, hist, math, home;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -25,6 +25,13 @@ public class CategoriesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 TestActivity.setTestModel(new AcoutingTest().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                startActivity(intent);
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
             }
         });

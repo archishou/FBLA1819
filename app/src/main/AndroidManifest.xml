@@ -29,6 +29,7 @@
         <activity android:name=".Activities.ResultsActivity"/>
         <activity android:name=".Activities.DetailActivity"/>
         <activity android:name=".Activities.HomeActivity"/>
+        <activity android:name=".Activities.LeaderboardActivity"/>
         <activity android:name=".Activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
