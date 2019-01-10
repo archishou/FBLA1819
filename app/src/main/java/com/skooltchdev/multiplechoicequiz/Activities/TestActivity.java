@@ -1,5 +1,6 @@
 package com.skooltchdev.multiplechoicequiz.Activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Resources.Utils;
 import com.skooltchdev.multiplechoicequiz.Tests.AccoutingTest;
 
 import java.util.ArrayList;
@@ -88,7 +88,8 @@ public class TestActivity extends AppCompatActivity {
                 if (!endOfTest()) updateQuestion(mQuestionNumber);
                 else {
                     ResultsActivity.setResultsModel(resultsModel);
-                    Utils.switchActivity(getApplicationContext(), ResultsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                    startActivity(intent);
                     Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
                 }
             }

@@ -1,5 +1,6 @@
 package com.skooltchdev.multiplechoicequiz.Activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Resources.Utils;
 
 /**
  * Created by Archishmaan Peyyety on 1/9/19.
@@ -55,7 +55,8 @@ public class ResultsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     DetailActivity.setQuestionNumber(Integer.parseInt(String.valueOf(finalI + 1)));
                     DetailActivity.setResultsModel(resultsModel);
-                    Utils.switchActivity(getApplicationContext(), DetailActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                    startActivity(intent);
                 }
             });
             mTableLayout.addView(tableRow);

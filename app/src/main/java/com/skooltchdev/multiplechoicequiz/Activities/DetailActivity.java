@@ -1,5 +1,6 @@
 package com.skooltchdev.multiplechoicequiz.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.TextView;
 
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Resources.Utils;
 
 /**
  * Created by Archishmaan Peyyety on 1/9/19.
@@ -39,7 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.switchActivity(getApplicationContext(), ResultsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
             }
         });
     }
