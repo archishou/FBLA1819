@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
@@ -73,7 +74,10 @@ public class TestActivity extends AppCompatActivity {
                 for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
                 if (mCorrectButton.getText().equals(answer)) score++;
                 mScoreView.setText(String.valueOf(score));
-                updateQuestion(mQuestionNumber);
+                if (!endOfTest()) updateQuestion(mQuestionNumber);
+                else {
+                    Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -105,6 +109,10 @@ public class TestActivity extends AppCompatActivity {
     }
     public static void setTestModel(TestModel testModel1) {
         testModel = testModel1;
+    }
+
+    private boolean endOfTest() {
+        return mQuestionNumber >= testModel.getQuestions().size();
     }
 
 }
