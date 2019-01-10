@@ -7,22 +7,24 @@ import android.view.View;
 import android.widget.Button;
 
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Tests.AcoutingTest;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
  * Project: FBLA1819
  */
-public class HomeActivity extends AppCompatActivity {
-    private Button quizzes;
+public class CategoriesActivity extends AppCompatActivity {
+    private Button accouting, parliment, intro, hist, math;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_home);
-        quizzes = (Button) findViewById(R.id.quiz_button);
-        quizzes.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_categorys);
+        accouting = (Button) findViewById(R.id.accouting_cat_button);
+        accouting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CategoriesActivity.class);
+                TestActivity.setTestModel(new AcoutingTest().getModel());
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
             }
         });
