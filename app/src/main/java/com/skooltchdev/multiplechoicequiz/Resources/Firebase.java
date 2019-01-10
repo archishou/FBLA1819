@@ -59,7 +59,7 @@ public class Firebase {
                             for (String column : Database.columnNames) {
                                 databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
                             }
-                            System.out.println("Test: " + getColumnData("account"));
+                            System.out.println("Test: " + getBranchData("account"));
                         }
                         successful = task.isSuccessful();
                         setmSuccessful(successful);
@@ -73,7 +73,7 @@ public class Firebase {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public static int getColumnData(final String branch) {
+    public static int getBranchData(final String branch) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
