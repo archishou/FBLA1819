@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Study FBLA</string>
+    <string name="sign_in">Sign In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="incorrect">Incorrect Username or Password</string>
+    <string name="title">FBLA Mobile App</string>
+    <string name="email">E-mail</string>
+    <string name="sign_up">Sign Up Here</string>
+    <string name="register_here">Register Here</string>
+    <string name="already_have_an_account">Already have an account? Sign in here</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="take_me_back_to_sign_in">Take me back to sign in</string>
+    <string name="users_name">Name</string>
+    <string name="welcome">Welcome to StudyFBLA</string>
+    <string name="account">Already have an account</string>
+    <string name="need_a_new_account">Need a new account</string>
+    <string name="facebook_app_id">739104173135982</string>
+    <string name="fb_login_protocol_scheme">fb739104173135982</string>
+    <string name="quiz">Quiz Categories</string>
+    <string name="leaderboards">Leaderboards</string>
+    <string name="share_score">Share your score</string>
+    <string name="settings">Settings</string>
 </resources>
