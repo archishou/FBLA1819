@@ -27,9 +27,9 @@ public class TestActivity extends AppCompatActivity {
     private Button mButtonChoice3;
     private Button mButtonChoice4;
     private Button submit, quit;
-    private Button correctButton;
-    private String mAnswer;
-    private int mScore = 0;
+    private Button mCorrectButton;
+    private String answer;
+    private int score = 0;
     private int mQuestionNumber = 0;
 
     List<Button> choices = new ArrayList<>();
@@ -39,7 +39,8 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         List<QuestionModel> questionModels = new ArrayList<>();
-                questionModels.add(new QuestionModel("How Are you?", new String[]{"Bad", "Med", "Sed", "med"}));
+        questionModels.add(new QuestionModel("How Are you?", new String[]{"Bad", "Med", "Sed", "med"}));
+        questionModels.add(new QuestionModel("How r u?", new String[]{"Bad", "Med", "Sed", "med"}));
         testModel = new TestModel("How Are You", questionModels);
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestionView = (TextView)findViewById(R.id.question);
@@ -61,19 +62,30 @@ public class TestActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     for (Button nB: choices) nB.setBackgroundColor(Color.rgb(0,145,234));
                     b.setBackgroundColor(Color.rgb(255, 0, 0));
+                    mCorrectButton = b;
                 }
             });
         }
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
+                if (mCorrectButton.getText().equals(answer)) score++;
+                mScoreView.setText(String.valueOf(score));
+                updateQuestion(mQuestionNumber);
+            }
+        });
     }
     private void updateQuestion(int questionID){
         int[] ran = genNumbers();
+
         mQuestionView.setText(testModel.getQuestions().get(questionID).getQuestion());
         mButtonChoice1.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[0]]);
         mButtonChoice2.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[1]]);
         mButtonChoice3.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[2]]);
         mButtonChoice4.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[3]]);
-        mAnswer = testModel.getQuestions().get(questionID).getQuestionsAnswers()[0];
-        if (mButtonChoice1.getText().equals(mAnswer)) correctButton = mButtonChoice1;
+        answer = testModel.getQuestions().get(questionID).getQuestionsAnswers()[0];
         mQuestionNumber++;
     }
     private static int[] genNumbers () {
