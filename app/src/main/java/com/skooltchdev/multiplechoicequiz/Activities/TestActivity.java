@@ -33,6 +33,7 @@ public class TestActivity extends AppCompatActivity {
     private Button mSelectedButton;
     private ResultsModel resultsModel;
     private String answer;
+    private String chosenAnswerLetter, correctAnswerLetter;
     private int score = 0;
     private int mQuestionNumber = 0;
 
@@ -74,10 +75,14 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
-                if (mSelectedButton.getText().equals(answer)) {
-                    resultsModel.addEntry(answer, mSelectedButton.getText().toString());
-                    score++;
-                }
+                if (mSelectedButton.getText().equals(answer)) score++;
+                if (mSelectedButton.getText().equals(mButtonChoice1.getText())) chosenAnswerLetter = "A";
+                if (mSelectedButton.getText().equals(mButtonChoice2.getText())) chosenAnswerLetter = "B";
+                if (mSelectedButton.getText().equals(mButtonChoice3.getText())) chosenAnswerLetter = "C";
+                else chosenAnswerLetter = "D";
+                resultsModel.setScore(score);
+                resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
+                        correctAnswerLetter, chosenAnswerLetter);
                 mScoreView.setText(String.valueOf(score));
                 if (!endOfTest()) updateQuestion(mQuestionNumber);
                 else {
@@ -97,6 +102,10 @@ public class TestActivity extends AppCompatActivity {
         mButtonChoice3.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[2]]);
         mButtonChoice4.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[3]]);
         answer = testModel.getQuestions().get(questionID).getQuestionsAnswers()[0];
+        if (mButtonChoice1.getText().equals(answer)) correctAnswerLetter = "A";
+        else if (mButtonChoice2.getText().equals(answer)) correctAnswerLetter = "B";
+        else if (mButtonChoice3.getText().equals(answer)) correctAnswerLetter = "C";
+        else correctAnswerLetter = "D";
         mQuestionNumber++;
     }
     private static int[] genNumbers () {

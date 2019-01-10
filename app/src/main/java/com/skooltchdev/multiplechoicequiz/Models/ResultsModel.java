@@ -9,14 +9,19 @@ import java.util.List;
  */
 public class ResultsModel {
     List<String> correctAnswer, givenAnswer;
-
+    List<String> correctAnswerLetter, givenAnswerLetter;
+    int score;
     public ResultsModel () {
         correctAnswer = new ArrayList<>();
         givenAnswer = new ArrayList<>();
+        correctAnswerLetter = new ArrayList<>();
+        givenAnswerLetter = new ArrayList<>();
     }
-    public void addEntry(String correct, String chosen) {
+    public void addEntry(String correct, String chosen, String letterCorrect, String letterGiven) {
         correctAnswer.add(correct);
         givenAnswer.add(chosen);
+        correctAnswerLetter.add(letterCorrect);
+        givenAnswerLetter.add(letterGiven);
     }
 
     public List<String> getCorrectAnswer() {
@@ -25,5 +30,21 @@ public class ResultsModel {
 
     public List<String> getGivenAnswer() {
         return givenAnswer;
+    }
+
+    public List<String> getCorrectAnswerLetter() {
+        return correctAnswerLetter;
+    }
+
+    public List<String> getGivenAnswerLetter() {
+        return givenAnswerLetter;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
