@@ -2,6 +2,7 @@ package com.skooltchdev.multiplechoicequiz.Resources;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +21,7 @@ public class Firebase {
     static FirebaseAuth firebaseAuth;
     static DatabaseReference databaseReference;
     static boolean isAuth;
+    static boolean mSuccessful;
     public static boolean isAuth(String userName, String password, Activity activity)  {
         FirebaseApp.initializeApp(activity.getApplicationContext());
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -38,7 +40,29 @@ public class Firebase {
     public static boolean emailExists(String email) {
         return false;
     }
-    public static void addUser(String email, String password, String name) {
+    public static boolean addUser(String email, String password, String name, final Activity activity) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    boolean successful;
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.",
+                                Toast.LENGTH_SHORT).show();
+                        successful = task.isSuccessful();
+                        setmSuccessful(successful);
+                    }
+                });
+        return ismSuccessful();
+    }
 
+    private static boolean ismSuccessful() {
+        return mSuccessful;
+    }
+
+    private static void setmSuccessful(boolean mSuccessful) {
+        Firebase.mSuccessful = mSuccessful;
     }
 }

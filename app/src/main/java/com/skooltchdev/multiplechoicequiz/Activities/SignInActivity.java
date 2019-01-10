@@ -40,6 +40,8 @@ public class SignInActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("Ustring: " + usernameE.getText().toString());
+                System.out.println("Pstring: " + passwordE.getText().toString());
                 if (usernameE.getText().toString().equals("") || passwordE.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(), "Please enter all information.", Toast.LENGTH_LONG).show();
                 else {

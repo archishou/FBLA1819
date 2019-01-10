@@ -16,6 +16,7 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  * Project: FBLA1819
  */
 public class RegisterActivity extends AppCompatActivity {
+    private RegisterActivity registerActivity;
     private EditText email, pass, confirmPass, name;
     private Button register, signIn;
     @Override
@@ -28,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.nameEditText);
         register = (Button) findViewById(R.id.registerButton);
         signIn = (Button) findViewById(R.id.signInButton_Register);
+        registerActivity = this;
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,12 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
                     name.getText().toString().equals("")) {
                     makeToast("Please enter all information.");
                 }
-                else if (!pass.getText().toString().equals(confirmPass.getText().toString()))
-                    makeToast("Passwords do not match.");
-                else if (Firebase.emailExists(email.getText().toString())) makeToast("Email already in use.");
-                else {
-                    Firebase.addUser(email.getText().toString(), pass.getText().toString(), name.getText().toString());
-                    makeToast("Registered. Redirecting to home");
+                else if (!pass.getText().toString().equals(confirmPass.getText().toString())) makeToast("Passwords do not match.");
+
+                else if (Firebase.addUser(email.getText().toString(), pass.getText().toString(), name.getText().toString(), registerActivity)) {
+                    makeToast("Registered, Redirecting to home");
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 }
