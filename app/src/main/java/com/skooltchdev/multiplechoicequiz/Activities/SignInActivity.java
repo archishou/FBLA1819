@@ -16,6 +16,7 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  * Project: FBLA1819
  */
 public class SignInActivity extends AppCompatActivity {
+    private SignInActivity signInActivity;
     private static String username;
     private Button signIn, signUp;
     private EditText usernameE, passwordE;
@@ -35,13 +36,14 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        signInActivity = this;
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (usernameE.getText().toString().equals("") || passwordE.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(), "Please enter all information.", Toast.LENGTH_LONG).show();
                 else {
-                    if (Firebase.isAuth(usernameE.getText().toString(), passwordE.getText().toString())) {
+                    if (Firebase.isAuth(usernameE.getText().toString(), passwordE.getText().toString(), signInActivity)) {
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         username = usernameE.getText().toString();
