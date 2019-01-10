@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
 
@@ -40,12 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
                     makeToast("Please enter all information.");
                 }
                 else if (!pass.getText().toString().equals(confirmPass.getText().toString())) makeToast("Passwords do not match.");
-
+                else if (pass.getText().toString().length() < 6) makeToast("Passwords is too short.");
                 else if (Firebase.addUser(email.getText().toString(), pass.getText().toString(), name.getText().toString(), registerActivity)) {
                     makeToast("Registered, Redirecting to home");
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 }
+                else makeToast("Error. Try again");
             }
         });
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     public void makeToast(String mssg) {
-        Toast.makeText(getApplicationContext(), mssg, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), mssg, Toast.LENGTH_SHORT).show();
     }
 }

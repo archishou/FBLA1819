@@ -2,6 +2,7 @@ package com.skooltchdev.multiplechoicequiz.Resources;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
@@ -49,7 +52,10 @@ public class Firebase {
                     boolean successful;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                        }
                         else {
                             for (String column : Database.columnNames) databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
                             writeBranchData("email", email);
