@@ -5,158 +5,100 @@ package com.skooltchdev.multiplechoicequiz.Models;
  * Project: FBLA1819
  */
 public class LeaderboardModel {
-    public static String[] leadership = new String[]{
-            "Accounting 1", "Accounting 2", "Accounting 3",
-            "Parliamentary Procedure 1", "Parliamentary Procedure 2", "Parliamentary Procedure 3",
-            "Intro to FBLA 1", "Intro to FBLA 2", "Intro to FBLA 3",
-            "Financial Math 1", "Financial Math 2", "Financial Math 3",
-            "History of FBLA 1", "History of FBLA 2", "History of FBLA 3",
-    };
-    String accounting1, accounting2, accounting3,
-        pProcedure1, pProcedure2, pProcedure3,
-        iFBLA1, iFBLA2, iFBLA3,
-        m1, m2, m3,
-        histFBLA1, histFBLA2, histFBLA3;
+    String accountingScore, pProcedureScore, iFBLAScore, mScore, histFBLAScore;
+    String accountingU, pProcedureU, iFBLAU, mU, histFBLAU;
 
-    public LeaderboardModel(String accounting1, String accounting2, String accounting3,
-                            String pProcedure1, String pProcedure2, String pProcedure3,
-                            String iFBLA1, String iFBLA2, String iFBLA3,
-                            String m1, String m2, String m3,
-                            String histFBLA1, String histFBLA2, String histFBLA3) {
-        this.accounting1 = accounting1;
-        this.accounting2 = accounting2;
-        this.accounting3 = accounting3;
-        this.pProcedure1 = pProcedure1;
-        this.pProcedure2 = pProcedure2;
-        this.pProcedure3 = pProcedure3;
-        this.iFBLA1 = iFBLA1;
-        this.iFBLA2 = iFBLA2;
-        this.iFBLA3 = iFBLA3;
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m3 = m3;
-        this.histFBLA1 = histFBLA1;
-        this.histFBLA2 = histFBLA2;
-        this.histFBLA3 = histFBLA3;
+    public LeaderboardModel(String accountingScore, String pProcedureScore, String iFBLAScore, String mScore, String histFBLAScore,
+                            String accountingU, String pProcedureU, String iFBLAU, String mU, String histFBLAU) {
+        this.accountingScore = accountingScore;
+        this.pProcedureScore = pProcedureScore;
+        this.iFBLAScore = iFBLAScore;
+        this.mScore = mScore;
+        this.histFBLAScore = histFBLAScore;
+        this.accountingU = accountingU;
+        this.pProcedureU = pProcedureU;
+        this.iFBLAU = iFBLAU;
+        this.mU = mU;
+        this.histFBLAU = histFBLAU;
     }
 
-    public String getAccounting1() {
-        return accounting1;
+    public String getAccountingScore() {
+        return accountingScore;
     }
 
-    public void setAccounting1(String accounting1) {
-        this.accounting1 = accounting1;
+    public void setAccountingScore(String accountingScore) {
+        this.accountingScore = accountingScore;
     }
 
-    public String getAccounting2() {
-        return accounting2;
+    public String getpProcedureScore() {
+        return pProcedureScore;
     }
 
-    public void setAccounting2(String accounting2) {
-        this.accounting2 = accounting2;
+    public void setpProcedureScore(String pProcedureScore) {
+        this.pProcedureScore = pProcedureScore;
     }
 
-    public String getAccounting3() {
-        return accounting3;
+    public String getiFBLAScore() {
+        return iFBLAScore;
     }
 
-    public void setAccounting3(String accounting3) {
-        this.accounting3 = accounting3;
+    public void setiFBLAScore(String iFBLAScore) {
+        this.iFBLAScore = iFBLAScore;
     }
 
-    public String getpProcedure1() {
-        return pProcedure1;
+    public String getmScore() {
+        return mScore;
     }
 
-    public void setpProcedure1(String pProcedure1) {
-        this.pProcedure1 = pProcedure1;
+    public void setmScore(String mScore) {
+        this.mScore = mScore;
     }
 
-    public String getpProcedure2() {
-        return pProcedure2;
+    public String getHistFBLAScore() {
+        return histFBLAScore;
     }
 
-    public void setpProcedure2(String pProcedure2) {
-        this.pProcedure2 = pProcedure2;
+    public void setHistFBLAScore(String histFBLAScore) {
+        this.histFBLAScore = histFBLAScore;
     }
 
-    public String getpProcedure3() {
-        return pProcedure3;
+    public String getAccountingU() {
+        return accountingU;
     }
 
-    public void setpProcedure3(String pProcedure3) {
-        this.pProcedure3 = pProcedure3;
+    public void setAccountingU(String accountingU) {
+        this.accountingU = accountingU;
     }
 
-    public String getiFBLA1() {
-        return iFBLA1;
+    public String getpProcedureU() {
+        return pProcedureU;
     }
 
-    public void setiFBLA1(String iFBLA1) {
-        this.iFBLA1 = iFBLA1;
+    public void setpProcedureU(String pProcedureU) {
+        this.pProcedureU = pProcedureU;
     }
 
-    public String getiFBLA2() {
-        return iFBLA2;
+    public String getiFBLAU() {
+        return iFBLAU;
     }
 
-    public void setiFBLA2(String iFBLA2) {
-        this.iFBLA2 = iFBLA2;
+    public void setiFBLAU(String iFBLAU) {
+        this.iFBLAU = iFBLAU;
     }
 
-    public String getiFBLA3() {
-        return iFBLA3;
+    public String getmU() {
+        return mU;
     }
 
-    public void setiFBLA3(String iFBLA3) {
-        this.iFBLA3 = iFBLA3;
+    public void setmU(String mU) {
+        this.mU = mU;
     }
 
-    public String getM1() {
-        return m1;
+    public String getHistFBLAU() {
+        return histFBLAU;
     }
 
-    public void setM1(String m1) {
-        this.m1 = m1;
-    }
-
-    public String getM2() {
-        return m2;
-    }
-
-    public void setM2(String m2) {
-        this.m2 = m2;
-    }
-
-    public String getM3() {
-        return m3;
-    }
-
-    public void setM3(String m3) {
-        this.m3 = m3;
-    }
-
-    public String getHistFBLA1() {
-        return histFBLA1;
-    }
-
-    public void setHistFBLA1(String histFBLA1) {
-        this.histFBLA1 = histFBLA1;
-    }
-
-    public String getHistFBLA2() {
-        return histFBLA2;
-    }
-
-    public void setHistFBLA2(String histFBLA2) {
-        this.histFBLA2 = histFBLA2;
-    }
-
-    public String getHistFBLA3() {
-        return histFBLA3;
-    }
-
-    public void setHistFBLA3(String histFBLA3) {
-        this.histFBLA3 = histFBLA3;
+    public void setHistFBLAU(String histFBLAU) {
+        this.histFBLAU = histFBLAU;
     }
 }

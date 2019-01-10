@@ -11,16 +11,15 @@
         android:id="@+id/leader_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginLeft="54dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="272dp"
-        android:layout_marginRight="272dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:text="Leaderboards"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,29 +28,36 @@
         android:layout_height="364dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/go_home_leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leader_textview">
 
         <LinearLayout
+            android:id="@+id/linear_leader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/linear_leader"
             tools:layout_editor_absoluteY="77dp">
             <!--Accounting 1-->
-            <include layout="@layout/leader_account_card"/>
+            <include layout="@layout/leader_account_card" />
+
+            <include layout="@layout/leader_hist_card" />
+
+            <include layout="@layout/leader_intro_card" />
+
+            <include layout="@layout/leader_math_card" />
+
+            <include layout="@layout/leader_parliment_card" />
 
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/go_home_leaderboard"
         android:layout_width="357dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
@@ -59,7 +65,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:background="@color/colorPrimaryDark"
+        android:text="HOME"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

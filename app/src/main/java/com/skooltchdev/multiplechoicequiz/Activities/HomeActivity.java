@@ -13,7 +13,7 @@ import com.skooltchdev.multiplechoicequiz.R;
  * Project: FBLA1819
  */
 public class HomeActivity extends AppCompatActivity {
-    private Button quizzes;
+    private Button quizzes, leaderboards;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -23,6 +23,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
+        leaderboards = (Button) findViewById(R.id.leaderboard_button);
+        leaderboards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LeaderboardActivity.class);
                 startActivity(intent);
             }
         });
