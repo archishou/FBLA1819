@@ -1,9 +1,15 @@
-package com.skooltchdev.multiplechoicequiz;
+package com.skooltchdev.multiplechoicequiz.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
+import com.skooltchdev.multiplechoicequiz.Models.TestModel;
+import com.skooltchdev.multiplechoicequiz.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +26,13 @@ public class TestActivity extends AppCompatActivity {
     private Button mButtonChoice2;
     private Button mButtonChoice3;
     private Button mButtonChoice4;
+    private Button submit, quit;
+    private Button correctButton;
     private String mAnswer;
     private int mScore = 0;
     private int mQuestionNumber = 0;
+
+    List<Button> choices = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,23 @@ public class TestActivity extends AppCompatActivity {
         mButtonChoice2 = (Button)findViewById(R.id.choice2);
         mButtonChoice3 = (Button)findViewById(R.id.choice3);
         mButtonChoice4 = (Button)findViewById(R.id.choice4);
+        choices.add(mButtonChoice1);
+        choices.add(mButtonChoice2);
+        choices.add(mButtonChoice3);
+        choices.add(mButtonChoice4);
+        quit = (Button)findViewById(R.id.quit_button);
+        submit = (Button)findViewById(R.id.submit_button);
         updateQuestion(mQuestionNumber);
+
+        for (final Button b : choices) {
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (Button nB: choices) nB.setBackgroundColor(Color.rgb(0,145,234));
+                    b.setBackgroundColor(Color.rgb(255, 0, 0));
+                }
+            });
+        }
     }
     private void updateQuestion(int questionID){
         int[] ran = genNumbers();
@@ -47,6 +73,7 @@ public class TestActivity extends AppCompatActivity {
         mButtonChoice3.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[2]]);
         mButtonChoice4.setText(testModel.getQuestions().get(questionID).getQuestionsAnswers()[ran[3]]);
         mAnswer = testModel.getQuestions().get(questionID).getQuestionsAnswers()[0];
+        if (mButtonChoice1.getText().equals(mAnswer)) correctButton = mButtonChoice1;
         mQuestionNumber++;
     }
     private static int[] genNumbers () {
@@ -64,8 +91,8 @@ public class TestActivity extends AppCompatActivity {
         rand[3] = random4;
         return rand;
     }
-
     public static void setTestModel(TestModel testModel1) {
         testModel = testModel1;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.skooltchdev.multiplechoicequiz;
+package com.skooltchdev.multiplechoicequiz.Models;
 
 import java.util.List;
 
