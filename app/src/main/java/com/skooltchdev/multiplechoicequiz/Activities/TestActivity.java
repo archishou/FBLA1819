@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
+import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Resources.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,8 @@ public class TestActivity extends AppCompatActivity {
     private Button mButtonChoice3;
     private Button mButtonChoice4;
     private Button submit, quit;
-    private Button mCorrectButton;
+    private Button mSelectedButton;
+    private ResultsModel resultsModel;
     private String answer;
     private int score = 0;
     private int mQuestionNumber = 0;
@@ -37,6 +41,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        resultsModel = new ResultsModel();
         List<QuestionModel> questionModels = new ArrayList<>();
         questionModels.add(new QuestionModel("How Are you?", new String[]{"Bad", "Med", "Sed", "med"}));
         questionModels.add(new QuestionModel("How r u?", new String[]{"Bad", "Med", "Sed", "med"}));
@@ -61,7 +66,7 @@ public class TestActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     for (Button nB: choices) nB.setBackgroundColor(Color.rgb(0,145,234));
                     b.setBackgroundColor(Color.rgb(255, 0, 0));
-                    mCorrectButton = b;
+                    mSelectedButton = b;
                 }
             });
         }
@@ -70,10 +75,15 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (Button b: choices) b.setBackgroundColor(Color.rgb(0,145,234));
-                if (mCorrectButton.getText().equals(answer)) score++;
+                if (mSelectedButton.getText().equals(answer)) {
+                    resultsModel.addEntry(answer, mSelectedButton.getText().toString());
+                    score++;
+                }
                 mScoreView.setText(String.valueOf(score));
                 if (!endOfTest()) updateQuestion(mQuestionNumber);
                 else {
+                    ResultsActivity.setResultsModel(resultsModel);
+                    Utils.switchAcitivty(getApplicationContext(), ResultsActivity.class);
                     Toast.makeText(getApplicationContext(), "End of test.", Toast.LENGTH_LONG).show();
                 }
             }
@@ -112,5 +122,7 @@ public class TestActivity extends AppCompatActivity {
     private boolean endOfTest() {
         return mQuestionNumber >= testModel.getQuestions().size();
     }
+
+
 
 }
