@@ -5,4 +5,7 @@ package com.skooltchdev.multiplechoicequiz.Resources;
  * Project: FBLA1819
  */
 public class Firebase {
+    public static boolean isAuth(String username, String password) {
+        return true;
+    }
 }
