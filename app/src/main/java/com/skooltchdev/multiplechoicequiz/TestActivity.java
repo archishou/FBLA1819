@@ -27,6 +27,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_quiz);
         List<QuestionModel> questionModels = new ArrayList<>();
                 questionModels.add(new QuestionModel("How Are you?", new String[]{"Bad", "Med", "Sed", "med"}));
         testModel = new TestModel("How Are You", questionModels);
@@ -50,16 +51,16 @@ public class TestActivity extends AppCompatActivity {
     }
     private static int[] genNumbers () {
         int[] rand = new int[4];
-        int random1 = (int )(Math.random() * 4 + 1);
+        int random1 = (int )(Math.random() * 4);
         rand[0] = random1;
-        int random2 = (int)(Math.random() * 4 + 1);
+        int random2 = (int)(Math.random() * 4);
         while (random2 == random1) random2 = (int)(Math.random());
         rand[1] = random2;
-        int random3 = (int)(Math.random() * 4 + 1);
-        while (random3 == random1 || random3 == random2) random3 = (int)(Math.random() * 4 + 1);
+        int random3 = (int)(Math.random() * 4);
+        while (random3 == random1 || random3 == random2) random3 = (int)(Math.random() * 4);
         rand[2] = random3;
-        int random4 = (int)(Math.random() * 4 + 1);
-        while (random4 == random1 || random4 == random2 || random4 == random3) random4 = (int)(Math.random() * 4 + 1);
+        int random4 = (int)(Math.random() * 4);
+        while (random4 == random1 || random4 == random2 || random4 == random3) random4 = (int)(Math.random() * 4);
         rand[3] = random4;
         return rand;
     }
@@ -67,5 +68,4 @@ public class TestActivity extends AppCompatActivity {
     public static void setTestModel(TestModel testModel1) {
         testModel = testModel1;
     }
-
 }
