@@ -23,7 +23,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     private TextView parlimentU, parlimentS;
 
     private static LeaderboardModel leaderboardModel =
-            new LeaderboardModel();
+            new LeaderboardModel("5", "3", "2", "3",
+                    "3", "h", "b", "o", "o", "o");;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
