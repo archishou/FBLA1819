@@ -21,9 +21,6 @@ public class LeaderboardModel {
         this.mU = mU;
         this.histFBLAU = histFBLAU;
     }
-    public LeaderboardModel() {
-
-    }
 
     public String getAccountingScore() {
         return accountingScore;

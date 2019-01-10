@@ -25,7 +25,7 @@ public class Firebase {
     static FirebaseAuth firebaseAuth;
     static DatabaseReference databaseReference;
     static boolean isAuth;
-    static int score;
+    static int score, highScore;
     static boolean mSuccessful;
     public static boolean signIn(String userName, String password, Activity activity)  {
         FirebaseApp.initializeApp(activity.getApplicationContext());
@@ -89,7 +89,37 @@ public class Firebase {
         databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
 
+    public static int getHighScore(final String branch)   {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int score = 0;
+                for(DataSnapshot user: dataSnapshot.getChildren())  {
+                    int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
+                    if(score <= userScore) score = userScore;
+                }
+                setHighScore(score);
+                System.out.println("After Score: " + score);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        System.out.println("Get Score: " + getHighScore());
+        return getHighScore();
+    }
+
+    private static int getHighScore() {
+        return highScore;
+    }
+
+    private static void setHighScore(int highScore) {
+        Firebase.highScore = highScore;
+    }
 
     private static int getScore() {
         return score;

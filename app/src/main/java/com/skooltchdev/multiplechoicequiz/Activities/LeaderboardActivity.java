@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
@@ -24,7 +25,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     private static LeaderboardModel leaderboardModel =
             new LeaderboardModel("5", "3", "2", "3",
-                    "3", "h", "b", "o", "o", "o");;
+                    "3", "h", "b", "o", "o", "o");
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -53,7 +54,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
-
+        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
         actU.setText(leaderboardModel.getAccountingU());
         introU.setText(leaderboardModel.getiFBLAU());
         mathU.setText(leaderboardModel.getmU());
