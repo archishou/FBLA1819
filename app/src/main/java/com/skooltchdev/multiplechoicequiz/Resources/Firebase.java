@@ -88,8 +88,11 @@ public class Firebase {
         });
         return getScore();
     }
-    public static void writeBranchData(final String branch) {
-
+    public static void writeBranchData(final String branch, final int branchData) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
 
     private static int getScore() {
