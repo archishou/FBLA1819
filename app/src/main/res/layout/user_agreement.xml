@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="700dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:text="Welcome to StudyFBLA. By using this application, you are agreeing to the terms and conditions presented below. Please take a moment to review the User Agreement below." />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="1 Introduction" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:text="1.1 Services" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:text="By registering an account with StudyFBLA, you have entered a legally biding contract with StudyFBLA. If you would like to not enter the binding contract, do not sign up. To use StudyFBLA’s resources you must sign up. If you decide to ever terminate the contract, you may do so by closing your account." />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:text="For the usage of all connected services, including social media, users must agree with both StudyFBLA’s user policies and the social media provider’s policies."
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="As a user of StudyFBLA’s resources, the use and sharing of personal data is defined by this Privacy Policy." />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:text="1.2 Change" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:text="The User Agreement and Privacy Policy is subject to change. Prior notification will be provided, so that users who decide against future iterations of StudyFBLA’s products can terminate your account. Notice will be provided for all changes." />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Obligations" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.1 Service Eligibility" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You must have one of the required forms of communication to “Sign Up” and use the application. Creating an account with false information or usage of vulgar language will result in termination of the account. Creating an account for another person who has violated the terms and conditions of StudyFBLA will also result in termination." />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.2 Account" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The User has ultimate rights over their account. It is the user’s responsibility to choose a secure password. The user is also responsible to keep their password confidential and to not transfer their accounts to other people. Unless StudyFBLA has been notified by the user prior to malicious activity, the user is responsible for all misuse." />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.3 User Safety" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="StudyFBLA will not ask for any other information aside from email, password, and name (or approved social media which provides the following information). Do not provide your credit card information or any other confidential information beyond email, password, and name (or approved social media) on the StudyFBLA page. StudyFBLA will also never contact you and ask for your password." />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.4 Notice" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The User will be notified of any developments via linked social media and/or email. It is the user’s responsibility to ensure up to date contact information." />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.5 Sharing" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We have the right to share feedback provided in settings, without any contact information or identifiers of users. Your scores may be shared on a leaderboards page at the discretion of StudyFBLA." />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. General Terms" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If a section or area is declared as unenforceable, the remainder of the contract is not void. All other sections remain. The unenforceable section can be changed by courts to be enforceable. If this is not possible, we request the court to invalidate only that part of the contract and enforce the remainder of the contract." />
+
+            <Button
+                android:id="@+id/returnButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Return" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
