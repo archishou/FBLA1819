@@ -9,10 +9,10 @@ import java.util.List;
  * Created by Archishmaan Peyyety on 1/9/19.
  * Project: FBLA1819
  */
-public class AcoutingTest {
+public class ParliamentaryProceduresTest {
     List<QuestionModel> questions;
     static TestModel model;
-    public AcoutingTest() {
+    public ParliamentaryProceduresTest() {
         questions = new ArrayList<>();
 
         questions.add(new QuestionModel("The five administrative regions of FBLA include all but which of the following?",
@@ -35,7 +35,7 @@ public class AcoutingTest {
                         "The full text of the motion or resolution must be submitted.",
                         "It must be in writing."}));
 
-        model = new TestModel("account", "Accountin 1", questions);
+        model = new TestModel("parliment", "Parliamentary Procedures Test 1", questions);
     }
 
     public TestModel getModel() {

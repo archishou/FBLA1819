@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Tests.AcoutingTest;
+import com.skooltchdev.multiplechoicequiz.Tests.ParliamentaryProceduresTest;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
@@ -20,11 +20,13 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_categorys);
         accouting = (Button) findViewById(R.id.accouting_cat_button);
+        parliment = (Button) findViewById(R.id.parliment_button) ;
+
         home = (Button) findViewById(R.id.goto_home);
-        accouting.setOnClickListener(new View.OnClickListener() {
+        parliment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TestActivity.setTestModel(new AcoutingTest().getModel());
+                TestActivity.setTestModel(new ParliamentaryProceduresTest().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
             }
