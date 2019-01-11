@@ -10,6 +10,7 @@ import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Tests.AccountingTest;
 import com.skooltchdev.multiplechoicequiz.Tests.FinancialMathTest;
 import com.skooltchdev.multiplechoicequiz.Tests.HistoryFBLA;
+import com.skooltchdev.multiplechoicequiz.Tests.Intro;
 import com.skooltchdev.multiplechoicequiz.Tests.ParliamentaryProceduresTest;
 
 /**
@@ -77,7 +78,7 @@ public class CategoriesActivity extends AppCompatActivity {
          intro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TestActivity.setTestModel(new IntroFBLA().getModel());
+                TestActivity.setTestModel(new Intro().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
                 //Starts IntroFBLA Quiz if the button for IntroFBLA is tapped

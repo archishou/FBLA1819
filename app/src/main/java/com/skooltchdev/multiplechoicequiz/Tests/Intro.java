@@ -30,7 +30,7 @@ public class Intro {
                         "One member is designated to answer the judges questions ", " Each team member has five minutes to speak"}));
 
         questions.add(new QuestionModel("A parliamentary procedure team can have ______ repeat members from a previous National Leadership Conference team.",
-                new String[]{“Two",
+                new String[]{"Two",
                         "One",
                         "Three",
                         "None"}));
