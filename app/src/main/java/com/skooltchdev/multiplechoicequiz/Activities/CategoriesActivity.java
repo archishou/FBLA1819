@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Tests.AccountingTest;
 import com.skooltchdev.multiplechoicequiz.Tests.FinancialMathTest;
 import com.skooltchdev.multiplechoicequiz.Tests.ParliamentaryProceduresTest;
 
@@ -46,10 +47,7 @@ public class CategoriesActivity extends AppCompatActivity {
             }
             
         });
-        
-        
-        
-                accounting.setOnClickListener(new View.OnClickListener() {
+        accouting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TestActivity.setTestModel(new AccountingTest().getModel());
