@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
@@ -54,14 +53,24 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
         leaderboardModel.setAccountingU(String.valueOf(Firebase.getHighScoreUser("account")));
+
         leaderboardModel.setiFBLAScore(String.valueOf(Firebase.getHighScore("intro")));
         leaderboardModel.setiFBLAU(String.valueOf(Firebase.getHighScoreUser("intro")));
+
         leaderboardModel.setmScore(String.valueOf(Firebase.getHighScore("math")));
         leaderboardModel.setmU(String.valueOf(Firebase.getHighScoreUser("math")));
+
         leaderboardModel.setpProcedureScore(String.valueOf(Firebase.getHighScore("parliment")));
         leaderboardModel.setpProcedureU(String.valueOf(Firebase.getHighScoreUser("parliment")));
+
         leaderboardModel.setHistFBLAScore(String.valueOf(Firebase.getHighScore("hist")));
         leaderboardModel.setHistFBLAU(String.valueOf(Firebase.getHighScoreUser("hist")));
 
@@ -77,15 +86,6 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathS.setText(leaderboardModel.getmScore());
         parlimentS.setText(leaderboardModel.getpProcedureScore());
         histS.setText(leaderboardModel.getHistFBLAScore());
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
-        leaderboardModel.setAccountingU(String.valueOf(Firebase.getHighScoreUser("account")));
-        actU.setText(leaderboardModel.getAccountingU());
-        actS.setText(leaderboardModel.getAccountingScore());
     }
 
     public static LeaderboardModel getLeaderboardModel() {

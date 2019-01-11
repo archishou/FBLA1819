@@ -2,7 +2,6 @@ package com.skooltchdev.multiplechoicequiz.Tests;
 
 import com.skooltchdev.multiplechoicequiz.Models.QuestionModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
-
 import java.util.ArrayList;
 import java.util.List;
 

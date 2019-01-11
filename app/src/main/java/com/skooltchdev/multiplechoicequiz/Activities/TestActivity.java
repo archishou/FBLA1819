@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.skooltchdev.multiplechoicequiz.Models.ResultsModel;
 import com.skooltchdev.multiplechoicequiz.Models.TestModel;
 import com.skooltchdev.multiplechoicequiz.R;
@@ -59,16 +58,6 @@ public class TestActivity extends AppCompatActivity {
         submit = (Button)findViewById(R.id.submit_button);
         updateQuestion(mQuestionNumber);
 
-        /*for (final Button b : choices) {
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for (Button nB: choices) nB.setBackgroundColor(Color.rgb(0,145,234));
-                    b.setBackgroundColor(Color.rgb(255, 0, 0));
-                    mSelectedButton = b;
-                }
-            });
-        }*/
         mButtonChoice1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,11 +103,7 @@ public class TestActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //for (Button b : choices) b.setBackgroundColor(Color.rgb(0, 145, 234));
-                mButtonChoice1.setBackgroundColor(Color.rgb(0, 145, 234));
-                mButtonChoice2.setBackgroundColor(Color.rgb(0, 145, 234));
-                mButtonChoice3.setBackgroundColor(Color.rgb(0, 145, 234));
-                mButtonChoice4.setBackgroundColor(Color.rgb(0, 145, 234));
+                for (Button b : choices) b.setBackgroundColor(Color.rgb(0, 145, 234));
                 if (mSelectedButton == null)
                     Toast.makeText(getApplicationContext(), "Please Select an Answer.", Toast.LENGTH_LONG).show();
                 else {

@@ -17,7 +17,6 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        //FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_welcome);
         mAccountButton = (Button) findViewById(R.id.accountButton);
         mNewAccount = (Button)findViewById(R.id.newAccountButton);
@@ -43,14 +42,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(WelcomeActivity.this, privacy.class));
+                startActivity(new Intent(WelcomeActivity.this, PrivacyActivity.class));
             }
         });
         mUserAgreement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(WelcomeActivity.this,userAgreement.class));
+                startActivity(new Intent(WelcomeActivity.this, UserAgreementActivity.class));
             }
         });
 
