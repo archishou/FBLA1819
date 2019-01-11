@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
@@ -53,12 +54,6 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
         leaderboardModel.setAccountingU(String.valueOf(Firebase.getHighScoreUser("account")));
 
@@ -86,6 +81,11 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathS.setText(leaderboardModel.getmScore());
         parlimentS.setText(leaderboardModel.getpProcedureScore());
         histS.setText(leaderboardModel.getHistFBLAScore());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     public static LeaderboardModel getLeaderboardModel() {

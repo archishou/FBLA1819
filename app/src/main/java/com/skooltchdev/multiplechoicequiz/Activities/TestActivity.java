@@ -107,20 +107,19 @@ public class TestActivity extends AppCompatActivity {
                 if (mSelectedButton == null)
                     Toast.makeText(getApplicationContext(), "Please Select an Answer.", Toast.LENGTH_LONG).show();
                 else {
+                    System.out.println("%%%Button Clicked: " + mSelectedButton.getText());
                     if (mSelectedButton.getText().equals(answer)) score++;
-                    if (mSelectedButton.getText().equals(mButtonChoice1.getText()))
-                        chosenAnswerLetter = "A";
-                    else if (mSelectedButton.getText().equals(mButtonChoice2.getText()))
-                        chosenAnswerLetter = "B";
-                    else if (mSelectedButton.getText().equals(mButtonChoice3.getText()))
-                        chosenAnswerLetter = "C";
+                    if (mSelectedButton.getText().equals(mButtonChoice1.getText())) chosenAnswerLetter = "A";
+                    else if (mSelectedButton.getText().equals(mButtonChoice2.getText()))chosenAnswerLetter = "B";
+                    else if (mSelectedButton.getText().equals(mButtonChoice3.getText())) chosenAnswerLetter = "C";
                     else chosenAnswerLetter = "D";
-
                     resultsModel.setScore(score);
                     resultsModel.addEntry(answer, mSelectedButton.getText().toString(),
                             correctAnswerLetter, chosenAnswerLetter, question);
                     mScoreView.setText(String.valueOf(score));
-                    if (!endOfTest()) updateQuestion(mQuestionNumber);
+                    if (!endOfTest()) {
+                        updateQuestion(mQuestionNumber);
+                    }
                     else {
                         if (Firebase.readBranchData(testModel.getBranch()) < score)
                             Firebase.writeBranchData(testModel.getBranch(), score);
@@ -162,7 +161,7 @@ public class TestActivity extends AppCompatActivity {
         int random1 = (int )(Math.random() * 4);
         rand[0] = random1;
         int random2 = (int)(Math.random() * 4);
-        while (random2 == random1) random2 = (int)(Math.random());
+        while (random2 == random1) random2 = (int)(Math.random() * 4);
         rand[1] = random2;
         int random3 = (int)(Math.random() * 4);
         while (random3 == random1 || random3 == random2) random3 = (int)(Math.random() * 4);

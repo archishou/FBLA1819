@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Tests.FinancialMathTest;
 import com.skooltchdev.multiplechoicequiz.Tests.ParliamentaryProceduresTest;
 
 /**
@@ -21,12 +22,20 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categorys);
         accouting = (Button) findViewById(R.id.accouting_cat_button);
         parliment = (Button) findViewById(R.id.parliment_button) ;
-
+        math = (Button) findViewById(R.id.math_cat_button);
         home = (Button) findViewById(R.id.goto_home);
         parliment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TestActivity.setTestModel(new ParliamentaryProceduresTest().getModel());
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                startActivity(intent);
+            }
+        });
+        math.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestActivity.setTestModel(new FinancialMathTest().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
             }
