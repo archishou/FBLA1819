@@ -23,6 +23,7 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_categorys);
         //Allows set up of buttons for each individual quiz topic and home to return to main page after sign in
+        intro = (Button) findViewById(R.id.intro_cat_button);
         accouting = (Button) findViewById(R.id.accouting_cat_button);
         parliment = (Button) findViewById(R.id.parliment_button) ;
         math = (Button) findViewById(R.id.math_cat_button);
