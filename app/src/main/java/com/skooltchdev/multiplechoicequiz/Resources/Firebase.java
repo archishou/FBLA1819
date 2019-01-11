@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.skooltchdev.multiplechoicequiz.Activities.HomeActivity;
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -133,6 +134,12 @@ public class Firebase {
     }
     public static int readBranchData(final String branch) {
         return readBranchData("Users", branch);
+    }
+    public static void writeBranchData(String mainBranch, final String branch, final int branchData) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = firebaseDatabase.getReference(mainBranch);
+        databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
     public static void writeBranchData(final String branch, final int branchData) {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -392,10 +399,17 @@ public class Firebase {
     }
     public static void submitBugReport(String name, String category, String comments) {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        int reportNum = readBranchData("bugReports", "total_reports") + 1;
+        int reportNum = readBranchData("bugReport", "total_reports");
         databaseReference = firebaseDatabase.getReference("bugReports");
-        //databaseReference.
+        Map<String, String> bugData = new HashMap<>();
+
+        bugData.put("category", category);
+        bugData.put("name", name);
+        bugData.put("comments", comments);
+
+        databaseReference = firebaseDatabase.getReference("bugReport").child("report_" + String.valueOf(reportNum));
+        databaseReference.setValue(bugData);
+        writeBranchData("bugReport", "total_reports", reportNum + 1);
 
     }
 }
