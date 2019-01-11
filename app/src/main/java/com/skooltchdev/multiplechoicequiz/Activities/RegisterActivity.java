@@ -16,6 +16,7 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  */
 public class RegisterActivity extends AppCompatActivity {
     private RegisterActivity registerActivity;
+    private HomeActivity homeActivity;
     private EditText email, pass, confirmPass, name;
     private Button register, signIn;
     @Override
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.registerButton);
         signIn = (Button) findViewById(R.id.signInButton_Register);
         registerActivity = this;
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,15 +39,29 @@ public class RegisterActivity extends AppCompatActivity {
                     confirmPass.getText().toString().equals("") ||
                     name.getText().toString().equals("")) {
                     makeToast("Please enter all information.");
+                    return;
                 }
-                else if (!pass.getText().toString().equals(confirmPass.getText().toString())) makeToast("Passwords do not match.");
-                else if (pass.getText().toString().length() < 6) makeToast("Passwords is too short.");
-                else if (Firebase.addUser(email.getText().toString(), pass.getText().toString(), name.getText().toString(), registerActivity)) {
+                else if (!pass.getText().toString().equals(confirmPass.getText().toString())) {
+                    makeToast("Passwords do not match.");
+                    return;
+                }
+                else if (pass.getText().toString().length() < 6) {
+                    makeToast("Passwords is too short.");
+                    return;
+                }
+
+                Toast.makeText(getApplicationContext(),"Registering User", Toast.LENGTH_SHORT).show();
+                if(Firebase.addUser(email.getText().toString(), pass.getText().toString(), name.getText().toString(), registerActivity))    {
                     makeToast("Registered, Redirecting to home");
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
-                else makeToast("Error. Try again");
+
+
+
+
+
             }
         });
         signIn.setOnClickListener(new View.OnClickListener() {

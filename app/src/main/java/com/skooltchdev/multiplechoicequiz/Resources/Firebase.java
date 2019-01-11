@@ -1,6 +1,8 @@
 package com.skooltchdev.multiplechoicequiz.Resources;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,12 +12,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.skooltchdev.multiplechoicequiz.Activities.HomeActivity;
+import com.skooltchdev.multiplechoicequiz.Activities.RegisterActivity;
+import com.skooltchdev.multiplechoicequiz.Activities.SignInActivity;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -31,16 +37,43 @@ public class Firebase {
     static int score, highScore;
     static boolean mSuccessful;
     static String eMail;
-    public static boolean signIn(String userName, String password, Activity activity)  {
+
+    public static boolean isrSuccessful() {
+        return rSuccessful;
+    }
+
+    public static void setrSuccessful(boolean rSuccessful) {
+        Firebase.rSuccessful = rSuccessful;
+    }
+
+    static boolean rSuccessful;
+
+    public static boolean signIn(String userName, String password, final Activity activity)  {
         FirebaseApp.initializeApp(activity.getApplicationContext());
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        firebaseAuth.signInWithEmailAndPassword(userName, password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(activity, "Sign In Successful", Toast.LENGTH_SHORT);
+                            Intent sharingIntent = new Intent(activity, HomeActivity.class);
+                            sharingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            activity.startActivity(sharingIntent);
+                        }
+                        else{
+                            Toast.makeText(activity,"Sign In Failed. Please Try Again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        /*firebaseAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 setmSuccessful(task.isSuccessful());
             }
-        });
+        });*/
         return ismSuccessful();
     }
     public static boolean addUser(final String email, String password, String name, final Activity activity) {
@@ -52,20 +85,47 @@ public class Firebase {
                     boolean successful;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(activity, "You have successfully registered", Toast.LENGTH_SHORT).show();
+                            for (String column : Database.columnNames) databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
+                            writeBranchData("email", email);
+                            setrSuccessful(true);
+
+                            Intent sharingIntent = new Intent(activity, HomeActivity.class);
+                            sharingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            //sharingIntent.setData(Uri.parse("http://google.com"));
+                            //Intent chooserIntent = Intent.createChooser(sharingIntent, "Open With");
+                            //chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            activity.startActivity(sharingIntent);
+                            //startActivity(new Intent(activity, HomeActivity.this));
+                        }
+                        else{
+                            setrSuccessful(false);
+                            if(task.getException() instanceof FirebaseAuthUserCollisionException)   {
+                                Toast.makeText(activity, "An account already exists with this e-mail", Toast.LENGTH_LONG).show();
+
+                            }
+                            else    {
+                                Toast.makeText(activity, "Please enter a valid E-mail and Password", Toast.LENGTH_LONG).show();
+
+                            }
+                        }
+
+                        /*if (!task.isSuccessful()) {
                             Toast.makeText(activity, "Email already in use.", Toast.LENGTH_SHORT).show();
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         }
                         else {
                             for (String column : Database.columnNames) databaseReference.child(firebaseAuth.getUid()).child(column).setValue(0);
                             writeBranchData("email", email);
-                        }
-                        successful = task.isSuccessful();
-                        setmSuccessful(successful);
+                        }*/
+                        /*successful = task.isSuccessful();
+                        setmSuccessful(successful);*/
                     }
                 });
 
-        return ismSuccessful();
+        return isrSuccessful();
     }
 
     public static FirebaseUser getUser () {
@@ -110,7 +170,7 @@ public class Firebase {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int score = 0;
+                int score = -1;
                 for(DataSnapshot user: dataSnapshot.getChildren())  {
                     int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
                     if(score <= userScore) score = userScore;
@@ -132,7 +192,7 @@ public class Firebase {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int score = 0;
+
                 for(DataSnapshot user: dataSnapshot.getChildren())  {
                     int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
                     if(score <= userScore)  {
@@ -140,7 +200,7 @@ public class Firebase {
                         seteMail(user.child("email").getValue(String.class).substring(0,user.child("email").getValue(String.class).indexOf('@')));
                     }
                 }
-                setHighScore(score);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

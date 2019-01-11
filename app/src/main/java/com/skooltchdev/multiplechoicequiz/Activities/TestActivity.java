@@ -59,7 +59,7 @@ public class TestActivity extends AppCompatActivity {
         submit = (Button)findViewById(R.id.submit_button);
         updateQuestion(mQuestionNumber);
 
-        for (final Button b : choices) {
+        /*for (final Button b : choices) {
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,12 +68,57 @@ public class TestActivity extends AppCompatActivity {
                     mSelectedButton = b;
                 }
             });
-        }
+        }*/
+        mButtonChoice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mButtonChoice1.setBackgroundColor(Color.rgb(255, 0, 0));
+                mButtonChoice2.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice3.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice4.setBackgroundColor(Color.rgb(0, 145, 234));
+                mSelectedButton = mButtonChoice1;
+            }
+        });
+        mButtonChoice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mButtonChoice1.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice2.setBackgroundColor(Color.rgb(255, 0, 0));
+                mButtonChoice3.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice4.setBackgroundColor(Color.rgb(0, 145, 234));
+                mSelectedButton = mButtonChoice2;
+            }
+        });
+
+        mButtonChoice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mButtonChoice1.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice3.setBackgroundColor(Color.rgb(255, 0, 0));
+                mButtonChoice2.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice4.setBackgroundColor(Color.rgb(0, 145, 234));
+                mSelectedButton = mButtonChoice3;
+            }
+        });
+        mButtonChoice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mButtonChoice1.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice4.setBackgroundColor(Color.rgb(255, 0, 0));
+                mButtonChoice2.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice3.setBackgroundColor(Color.rgb(0, 145, 234));
+                mSelectedButton = mButtonChoice4;
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (Button b : choices) b.setBackgroundColor(Color.rgb(0, 145, 234));
+                //for (Button b : choices) b.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice1.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice2.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice3.setBackgroundColor(Color.rgb(0, 145, 234));
+                mButtonChoice4.setBackgroundColor(Color.rgb(0, 145, 234));
                 if (mSelectedButton == null)
                     Toast.makeText(getApplicationContext(), "Please Select an Answer.", Toast.LENGTH_LONG).show();
                 else {
