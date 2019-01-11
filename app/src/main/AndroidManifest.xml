@@ -41,6 +41,8 @@
         <activity android:name=".Activities.CategoriesActivity"/>
         <activity android:name=".Activities.SignInActivity"/>
         <activity android:name=".Activities.RegisterActivity"/>
+        <activity android:name=".Activities.UserAgreementActivity" />
+        <activity android:name=".Activities.PrivacyActivity" />
     </application>
 
 </manifest>
