@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.skooltchdev.multiplechoicequiz.Activities.HomeActivity;
 
+import java.util.Map;
+
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
  * Project: FBLA1819
@@ -26,11 +28,14 @@ import com.skooltchdev.multiplechoicequiz.Activities.HomeActivity;
 public class Firebase {
     static FirebaseDatabase firebaseDatabase;
     static FirebaseAuth firebaseAuth;
+    static String branch;
     static DatabaseReference databaseReference;
     static boolean isAuth;
     static int score, highScore;
     static boolean mSuccessful;
     static String eMail;
+    static int accountHigh, histHigh, parliHigh, mathHigh, introHigh;
+    static String accountU, histU, parliU, mathU, introU;
 
     public static boolean isrSuccessful() {
         return rSuccessful;
@@ -132,72 +137,6 @@ public class Firebase {
         databaseReference.child(firebaseAuth.getUid()).child(branch).setValue(branchData);
     }
 
-    public static int getHighScore(final String branch)   {
-        //setHighScore(0);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int score = -1;
-                for(DataSnapshot user: dataSnapshot.getChildren())  {
-                    int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
-                    if(score <= userScore) score = userScore;
-                }
-                setHighScore(score);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return getHighScore();
-    }
-
-    public static String getHighScoreUser(final String branch)  {
-        //seteMail("");
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot user: dataSnapshot.getChildren())  {
-                    int userScore = Integer.parseInt(String.valueOf(user.child(branch).getValue()));
-                    if(score <= userScore)  {
-                        score = userScore;
-                        seteMail(user.child("email").getValue(String.class)
-                                .substring(0,user.child("email").getValue(String.class).indexOf('@')));
-                    }
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return geteMail();
-    }
-
-    public static String geteMail() {
-        return eMail;
-    }
-
-    public static void seteMail(String eMail) {
-        Firebase.eMail = eMail;
-    }
-
-    private static int getHighScore() {
-        return highScore;
-    }
-
-    private static void setHighScore(int highScore) {
-        Firebase.highScore = highScore;
-    }
-
     private static int getScore() {
         return score;
     }
@@ -210,5 +149,231 @@ public class Firebase {
     }
     private static void setmSuccessful(boolean mSuccessful) {
         Firebase.mSuccessful = mSuccessful;
+    }
+
+    public static String[] getAccountingHighScore() {
+        String[] returnString;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getHighScoreAccount((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //handle databaseError
+            }
+        });
+        returnString = new String[]{
+                String.valueOf(getAccountHigh()),
+                getAccountU()
+        };
+        return returnString;
+    }
+    private static void getHighScoreAccount(Map<String,Object> users) {
+        int score = -1;
+        int userScore = 0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            Map singleUser = (Map) entry.getValue();
+            userScore = Integer.parseInt(String.valueOf(singleUser.get("account")));
+            if (userScore > score) {
+                String email = String.valueOf(singleUser.get("email"));
+                setAccountU(email.substring(0, email.indexOf('@')));
+                score = userScore;
+            }
+        }
+        setAccountHigh(score);
+    }
+    private static int getAccountHigh() {
+        return accountHigh;
+    }
+    private static void setAccountHigh(int accountHigh) {
+        Firebase.accountHigh = accountHigh;
+    }
+    public static String getAccountU() {return accountU;}
+    public static void setAccountU(String accountU) {Firebase.accountU = accountU;}
+
+    public static String[] getHistHighScore() {
+        String[] returnString;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getHighScoreHist((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //handle databaseError
+            }
+        });
+        returnString = new String[]{
+                String.valueOf(getHistHigh()),
+                getHistU()
+        };
+        return returnString;
+    }
+    private static void getHighScoreHist(Map<String,Object> users) {
+        int score = -1;
+        int userScore = 0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            Map singleUser = (Map) entry.getValue();
+            userScore = Integer.parseInt(String.valueOf(singleUser.get("hist")));
+            if (userScore > score) {
+                String email = String.valueOf(singleUser.get("email"));
+                setHistU(email.substring(0, email.indexOf('@')));
+                score = userScore;
+            }
+        }
+        setHistHigh(score);
+    }
+    private static int getHistHigh() {
+        return histHigh;
+    }
+    private static void setHistHigh(int histHigh) {
+        Firebase.histHigh = histHigh;
+    }
+    private static String getHistU() {
+        return histU;
+    }
+    private static void setHistU(String histU) {
+        Firebase.histU = histU;
+    }
+
+    public static String[] getParliHighScore() {
+        String[] returnString;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getHighScoreParli((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //handle databaseError
+            }
+        });
+        returnString = new String[]{
+                String.valueOf(getParliHigh()),
+                getParliU()
+        };
+        return returnString;
+    }
+    private static void getHighScoreParli(Map<String,Object> users) {
+        int score = -1;
+        int userScore = 0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            Map singleUser = (Map) entry.getValue();
+            userScore = Integer.parseInt(String.valueOf(singleUser.get("parliment")));
+            if (userScore > score) {
+                String email = String.valueOf(singleUser.get("email"));
+                setParliU(email.substring(0, email.indexOf('@')));
+                score = userScore;
+            }
+        }
+        setParliHigh(score);
+    }
+    private static int getParliHigh() {
+        return parliHigh;
+    }
+    private static void setParliHigh(int parliHigh) {
+        Firebase.parliHigh = parliHigh;
+    }
+    private static String getParliU() {
+        return parliU;
+    }
+    private static void setParliU(String parliU) {
+        Firebase.parliU = parliU;
+    }
+
+    public static String[] getMathHighScore() {
+        String[] returnString;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getHighScoreMath((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //handle databaseError
+            }
+        });
+        returnString = new String[]{
+                String.valueOf(getMathHigh()),
+                getMathU()
+        };
+        return returnString;
+    }
+    private static void getHighScoreMath(Map<String,Object> users) {
+        int score = -1;
+        int userScore = 0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            Map singleUser = (Map) entry.getValue();
+            userScore = Integer.parseInt(String.valueOf(singleUser.get("math")));
+            if (userScore > score) {
+                String email = String.valueOf(singleUser.get("email"));
+                setMathU(email.substring(0, email.indexOf('@')));
+                score = userScore;
+            }
+        }
+        setMathHigh(score);
+    }
+    private static int getMathHigh() {
+        return mathHigh;
+    }
+    private static void setMathHigh(int mathHigh) {
+        Firebase.mathHigh = mathHigh;
+    }
+    private static String getMathU() {
+        return mathU;
+    }
+    private static void setMathU(String mathU) {
+        Firebase.mathU = mathU;
+    }
+
+    public static String[] getIntroHighScore() {
+        String[] returnString;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getHighScoreIntro((Map<String,Object>) dataSnapshot.getValue());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //handle databaseError
+            }
+        });
+        returnString = new String[]{
+                String.valueOf(getIntroHigh()),
+                getIntroU()
+        };
+        return returnString;
+    }
+    private static void getHighScoreIntro(Map<String,Object> users) {
+        int score = -1;
+        int userScore = 0;
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+            Map singleUser = (Map) entry.getValue();
+            userScore = Integer.parseInt(String.valueOf(singleUser.get("math")));
+            if (userScore > score) {
+                String email = String.valueOf(singleUser.get("email"));
+                setIntroU(email.substring(0, email.indexOf('@')));
+                score = userScore;
+            }
+        }
+        setIntroHigh(score);
+    }
+    public static int getIntroHigh() {
+        return introHigh;
+    }
+    public static void setIntroHigh(int introHigh) {
+        Firebase.introHigh = introHigh;
+    }
+    public static String getIntroU() {
+        return introU;
+    }
+    public static void setIntroU(String introU) {
+        Firebase.introU = introU;
     }
 }

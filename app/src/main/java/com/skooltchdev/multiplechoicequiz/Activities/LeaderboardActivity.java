@@ -54,20 +54,23 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
-        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getHighScore("account")));
-        leaderboardModel.setAccountingU(String.valueOf(Firebase.getHighScoreUser("account")));
+        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getAccountingHighScore()[0]));
+        leaderboardModel.setAccountingU(String.valueOf(Firebase.getAccountingHighScore()[1]));
 
-        leaderboardModel.setiFBLAScore(String.valueOf(Firebase.getHighScore("intro")));
-        leaderboardModel.setiFBLAU(String.valueOf(Firebase.getHighScoreUser("intro")));
+        leaderboardModel.setHistFBLAScore(String.valueOf(Firebase.getHistHighScore()[0]));
+        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[1]);
 
-        leaderboardModel.setmScore(String.valueOf(Firebase.getHighScore("math")));
-        leaderboardModel.setmU(String.valueOf(Firebase.getHighScoreUser("math")));
+        leaderboardModel.setiFBLAScore(Firebase.getIntroHighScore()[0]);
+        leaderboardModel.setiFBLAU(Firebase.getIntroHighScore()[1]);
 
-        leaderboardModel.setpProcedureScore(String.valueOf(Firebase.getHighScore("parliment")));
-        leaderboardModel.setpProcedureU(String.valueOf(Firebase.getHighScoreUser("parliment")));
+        leaderboardModel.setmScore(Firebase.getMathHighScore()[0]);
+        leaderboardModel.setmU(Firebase.getMathHighScore()[0]);
 
-        leaderboardModel.setHistFBLAScore(String.valueOf(Firebase.getHighScore("hist")));
-        leaderboardModel.setHistFBLAU(String.valueOf(Firebase.getHighScoreUser("hist")));
+        leaderboardModel.setpProcedureScore(Firebase.getParliHighScore()[0]);
+        leaderboardModel.setpProcedureU(Firebase.getParliHighScore()[0]);
+
+        leaderboardModel.setHistFBLAScore(Firebase.getHistHighScore()[0]);
+        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[0]);
 
 
         actU.setText(leaderboardModel.getAccountingU());
