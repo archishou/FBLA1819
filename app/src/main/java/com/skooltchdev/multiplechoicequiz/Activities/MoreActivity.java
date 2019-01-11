@@ -21,11 +21,12 @@ import com.skooltchdev.multiplechoicequiz.R;
  * Project: FBLA1819
  */
 public class MoreActivity extends AppCompatActivity {
+    private MoreActivity moreActivity;
     private Button deleteAccount, bugReport;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bug_report_activty);
+        setContentView(R.layout.activity_more);
         deleteAccount = (Button) findViewById(R.id.dlt_act_bttn);
         bugReport = (Button) findViewById(R.id.sbmt_bgrprt);
         bugReport.setOnClickListener(new View.OnClickListener() {
@@ -35,17 +36,18 @@ public class MoreActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        moreActivity = this;
         deleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(getApplicationContext(), android.R.style.Theme_Material_Dialog_Alert);
+                    builder = new AlertDialog.Builder(moreActivity, android.R.style.Theme_Material_Dialog_Alert);
                 } else {
-                    builder = new AlertDialog.Builder(getApplicationContext());
+                    builder = new android.support.v7.app.AlertDialog.Builder(moreActivity);
                 }
                 builder.setTitle("Delete account")
-                        .setMessage("Are you sure you want to delete this account? There is no reversal.")
+                        .setMessage("Are you sure you want to delete this account? There action is not reversible.")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
