@@ -76,7 +76,6 @@ public class TestActivity extends AppCompatActivity {
                 if (mSelectedButton == null)
                     Toast.makeText(getApplicationContext(), "Please Select an Answer.", Toast.LENGTH_LONG).show();
                 else {
-                    System.out.println("%%%Button Clicked: " + mSelectedButton.getText());
                     if (mSelectedButton.getText().equals(answer)) score++;
                     if (mSelectedButton.getText().equals(mButtonChoice1.getText())) chosenAnswerLetter = "A";
                     else if (mSelectedButton.getText().equals(mButtonChoice2.getText()))chosenAnswerLetter = "B";
