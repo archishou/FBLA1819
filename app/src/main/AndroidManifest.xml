@@ -46,6 +46,11 @@
         <activity android:name=".Activities.MoreActivity"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".Activities.BugReportActivity" />
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider2137542379602373"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

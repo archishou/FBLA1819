@@ -1,11 +1,16 @@
 package com.skooltchdev.multiplechoicequiz.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
@@ -15,11 +20,15 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  * Project: FBLA1819
  */
 public class HomeActivity extends AppCompatActivity {
-    private Button quizzes, leaderboards, logout, more;
+    private HomeActivity homeActivity;
+    private Button quizzes, leaderboards, logout, more, share;
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_home);
+        share = findViewById(R.id.share_button);
         more = findViewById(R.id.more_button);
         logout = findViewById(R.id.log_out);
         quizzes = (Button) findViewById(R.id.dlt_act_bttn);
@@ -75,5 +84,25 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        homeActivity = this;
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
+                callbackManager = CallbackManager.Factory.create();
+                shareDialog = new ShareDialog(homeActivity);
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                            .build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
