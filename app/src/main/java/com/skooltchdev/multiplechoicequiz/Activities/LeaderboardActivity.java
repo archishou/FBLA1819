@@ -58,8 +58,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             setText(Firebase.getLeaderboard());
         }
         else setText(leaderboardModel);
-
-
     }
 
     @Override
