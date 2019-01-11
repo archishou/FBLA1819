@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
@@ -52,7 +53,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathS = (TextView) findViewById(R.id.math_score_1);
 
         System.out.println("%%%: " + leaderboardModel.getAccountingU());
-        if (leaderboardModel.getAccountingU().equals("null")) setText(Firebase.getLeaderboard());
+        if (leaderboardModel.getAccountingU().equals("null")) {
+            Toast.makeText(getApplicationContext(), "Please refresh to get latest scores", Toast.LENGTH_SHORT).show();
+            setText(Firebase.getLeaderboard());
+        }
         else setText(leaderboardModel);
 
 

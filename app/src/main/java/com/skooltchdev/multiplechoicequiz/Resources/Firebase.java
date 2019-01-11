@@ -394,8 +394,9 @@ public class Firebase {
         Firebase.introU = introU;
     }
     public static LeaderboardModel getLeaderboard () {
-        return new LeaderboardModel("1", "1", "1", "1", "1",
-                "jhon", "jhon", "smith", "jane", "jill");
+        return new LeaderboardModel("0", "0", "0", "0", "0",
+                "updating recent scores", "updating recent scores",
+                "updating recent scores", "updating recent scores", "updating recent scores");
     }
     public static void submitBugReport(String name, String category, String comments) {
         firebaseDatabase = FirebaseDatabase.getInstance();
