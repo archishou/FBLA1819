@@ -44,7 +44,26 @@ public class CategoriesActivity extends AppCompatActivity {
                 //Starts Financial Math Quiz if the button for Financial Math is tapped
 
             }
+            
         });
+        
+        
+        
+                accounting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestActivity.setTestModel(new AccountingTest().getModel());
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                startActivity(intent);
+                //Starts Accounting Quiz if the button for Accounting is tapped
+
+            }
+            
+        });
+        
+        
+        
+        
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
