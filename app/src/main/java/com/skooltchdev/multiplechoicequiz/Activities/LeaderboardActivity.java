@@ -23,9 +23,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private TextView mathU, mathS;
     private TextView parlimentU, parlimentS;
 
-    private static LeaderboardModel leaderboardModel =
-            new LeaderboardModel("5", "3", "2", "3",
-                    "3", "h", "b", "o", "o", "o");
+    private static LeaderboardModel leaderboardModel;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -38,7 +36,6 @@ public class LeaderboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         actU = (TextView) findViewById(R.id.act_username_1);
         actS = (TextView) findViewById(R.id.acount_score_1);
 
@@ -54,36 +51,11 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
-        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getAccountingHighScore()[0]));
-        leaderboardModel.setAccountingU(String.valueOf(Firebase.getAccountingHighScore()[1]));
-
-        leaderboardModel.setHistFBLAScore(String.valueOf(Firebase.getHistHighScore()[0]));
-        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[1]);
-
-        leaderboardModel.setiFBLAScore(Firebase.getIntroHighScore()[0]);
-        leaderboardModel.setiFBLAU(Firebase.getIntroHighScore()[1]);
-
-        leaderboardModel.setmScore(Firebase.getMathHighScore()[0]);
-        leaderboardModel.setmU(Firebase.getMathHighScore()[0]);
-
-        leaderboardModel.setpProcedureScore(Firebase.getParliHighScore()[0]);
-        leaderboardModel.setpProcedureU(Firebase.getParliHighScore()[0]);
-
-        leaderboardModel.setHistFBLAScore(Firebase.getHistHighScore()[0]);
-        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[0]);
+        System.out.println("%%%: " + leaderboardModel.getAccountingU());
+        if (leaderboardModel.getAccountingU().equals("null")) setText(Firebase.getLeaderboard());
+        else setText(leaderboardModel);
 
 
-        actU.setText(leaderboardModel.getAccountingU());
-        introU.setText(leaderboardModel.getiFBLAU());
-        mathU.setText(leaderboardModel.getmU());
-        parlimentU.setText(leaderboardModel.getpProcedureU());
-        histU.setText(leaderboardModel.getHistFBLAU());
-
-        actS.setText(leaderboardModel.getAccountingScore());
-        introS.setText(leaderboardModel.getiFBLAScore());
-        mathS.setText(leaderboardModel.getmScore());
-        parlimentS.setText(leaderboardModel.getpProcedureScore());
-        histS.setText(leaderboardModel.getHistFBLAScore());
     }
 
     @Override
@@ -97,5 +69,19 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public static void setLeaderboardModel(LeaderboardModel leaderboardModel) {
         LeaderboardActivity.leaderboardModel = leaderboardModel;
+    }
+
+    public void setText(LeaderboardModel leaderboardModel) {
+        actU.setText(leaderboardModel.getAccountingU());
+        introU.setText(leaderboardModel.getiFBLAU());
+        mathU.setText(leaderboardModel.getmU());
+        parlimentU.setText(leaderboardModel.getpProcedureU());
+        histU.setText(leaderboardModel.getHistFBLAU());
+
+        actS.setText(leaderboardModel.getAccountingScore());
+        introS.setText(leaderboardModel.getiFBLAScore());
+        mathS.setText(leaderboardModel.getmScore());
+        parlimentS.setText(leaderboardModel.getpProcedureScore());
+        histS.setText(leaderboardModel.getHistFBLAScore());
     }
 }
