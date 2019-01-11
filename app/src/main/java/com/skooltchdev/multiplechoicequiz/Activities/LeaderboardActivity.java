@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
 import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
@@ -64,14 +63,13 @@ public class LeaderboardActivity extends AppCompatActivity {
         leaderboardModel.setiFBLAU(Firebase.getIntroHighScore()[1]);
 
         leaderboardModel.setmScore(Firebase.getMathHighScore()[0]);
-        leaderboardModel.setmU(Firebase.getMathHighScore()[0]);
+        leaderboardModel.setmU(Firebase.getMathHighScore()[1]);
 
         leaderboardModel.setpProcedureScore(Firebase.getParliHighScore()[0]);
-        leaderboardModel.setpProcedureU(Firebase.getParliHighScore()[0]);
+        leaderboardModel.setpProcedureU(Firebase.getParliHighScore()[1]);
 
         leaderboardModel.setHistFBLAScore(Firebase.getHistHighScore()[0]);
-        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[0]);
-
+        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[1]);
 
         actU.setText(leaderboardModel.getAccountingU());
         introU.setText(leaderboardModel.getiFBLAU());
