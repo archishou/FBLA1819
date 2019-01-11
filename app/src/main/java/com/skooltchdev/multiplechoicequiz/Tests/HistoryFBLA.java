@@ -55,7 +55,7 @@ public class HistoryFBLA {
                         "1945.",
                         "1955"}));
 
-        questions.add(new QuestionModel("When was the FBLA-Middle Level division formed?”,
+        questions.add(new QuestionModel("When was the FBLA-Middle Level division formed?",
                 new String[]{"1994",
                         "1952",
                         "1967.",
