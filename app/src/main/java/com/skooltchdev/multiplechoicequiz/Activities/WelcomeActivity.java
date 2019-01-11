@@ -13,7 +13,7 @@ import com.skooltchdev.multiplechoicequiz.R;
  * Project: FBLA1819
  */
 public class WelcomeActivity extends AppCompatActivity {
-    private Button mAccountButton, mNewAccount;
+    private Button mAccountButton, mNewAccount, mUserAgreement, mPrivacy;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -21,10 +21,13 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         mAccountButton = (Button) findViewById(R.id.accountButton);
         mNewAccount = (Button)findViewById(R.id.newAccountButton);
+        mUserAgreement = (Button)findViewById(R.id.agreementButton);
+        mPrivacy = (Button)findViewById(R.id.privacyButton);
         mAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                finish();
                 startActivity(intent);
             }
         });
@@ -32,7 +35,22 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                finish();
                 startActivity(intent);
+            }
+        });
+        mPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(WelcomeActivity.this, privacy.class));
+            }
+        });
+        mUserAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(WelcomeActivity.this,userAgreement.class));
             }
         });
 

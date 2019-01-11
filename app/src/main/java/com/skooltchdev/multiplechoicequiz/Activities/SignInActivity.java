@@ -45,12 +45,11 @@ public class SignInActivity extends AppCompatActivity {
                 if (usernameE.getText().toString().equals("") || passwordE.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(), "Please enter all information.", Toast.LENGTH_LONG).show();
                 else {
+                    Toast.makeText(getApplicationContext(),"Signing In...", Toast.LENGTH_SHORT).show();
                     if (Firebase.signIn(usernameE.getText().toString(), passwordE.getText().toString(), signInActivity)) {
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-                        username = usernameE.getText().toString();
+                        Toast.makeText(getApplicationContext(), "meme",Toast.LENGTH_SHORT);
                     }
-                    else Toast.makeText(getApplicationContext(), "Incorrect Credentials.", Toast.LENGTH_LONG).show();
+
 
                 }
             }
