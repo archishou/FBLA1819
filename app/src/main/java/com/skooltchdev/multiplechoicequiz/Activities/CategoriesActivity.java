@@ -16,10 +16,12 @@ import com.skooltchdev.multiplechoicequiz.Tests.ParliamentaryProceduresTest;
  */
 public class CategoriesActivity extends AppCompatActivity {
     private Button accouting, parliment, intro, hist, math, home;
+    // Creates Buttons for each of the subjects above
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_categorys);
+        //Allows set up of buttons for each individual quiz topic and home to return to main page after sign in
         accouting = (Button) findViewById(R.id.accouting_cat_button);
         parliment = (Button) findViewById(R.id.parliment_button) ;
         math = (Button) findViewById(R.id.math_cat_button);
@@ -30,6 +32,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 TestActivity.setTestModel(new ParliamentaryProceduresTest().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
+                //Starts Parliamentary Procedures Quiz if the button for Parliamentary Procedures is tapped
             }
         });
         math.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +41,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 TestActivity.setTestModel(new FinancialMathTest().getModel());
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(intent);
+                //Starts Financial Math Quiz if the button for Financial Math is tapped
+
             }
         });
         home.setOnClickListener(new View.OnClickListener() {
