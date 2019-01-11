@@ -15,13 +15,14 @@ import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
  * Project: FBLA1819
  */
 public class HomeActivity extends AppCompatActivity {
-    private Button quizzes, leaderboards, logout;
+    private Button quizzes, leaderboards, logout, more;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_home);
+        more = findViewById(R.id.more_button);
         logout = findViewById(R.id.log_out);
-        quizzes = (Button) findViewById(R.id.quiz_button);
+        quizzes = (Button) findViewById(R.id.dlt_act_bttn);
         quizzes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        leaderboards = (Button) findViewById(R.id.leaderboard_button);
+        leaderboards = (Button) findViewById(R.id.sbmt_bgrprt);
         leaderboards.setOnClickListener(new View.OnClickListener() {
             LeaderboardModel leaderboardModel = new LeaderboardModel();
             @Override
@@ -64,6 +65,13 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Firebase.signOut();
                 Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MoreActivity.class);
                 startActivity(intent);
             }
         });

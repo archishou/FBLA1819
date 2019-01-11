@@ -43,6 +43,8 @@
         <activity android:name=".Activities.RegisterActivity"/>
         <activity android:name=".Activities.UserAgreementActivity" />
         <activity android:name=".Activities.PrivacyActivity" />
+        <activity android:name=".Activities.MoreActivity" />
+        <activity android:name=".Activities.BugReportActivity" />
     </application>
 
 </manifest>
