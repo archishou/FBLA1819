@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
+import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
@@ -51,18 +52,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathS = (TextView) findViewById(R.id.math_score_1);
 
         System.out.println("%%%: " + leaderboardModel.getAccountingU());
+        if (leaderboardModel.getAccountingU().equals("null")) setText(Firebase.getLeaderboard());
+        else setText(leaderboardModel);
 
-        actU.setText(leaderboardModel.getAccountingU());
-        introU.setText(leaderboardModel.getiFBLAU());
-        mathU.setText(leaderboardModel.getmU());
-        parlimentU.setText(leaderboardModel.getpProcedureU());
-        histU.setText(leaderboardModel.getHistFBLAU());
 
-        actS.setText(leaderboardModel.getAccountingScore());
-        introS.setText(leaderboardModel.getiFBLAScore());
-        mathS.setText(leaderboardModel.getmScore());
-        parlimentS.setText(leaderboardModel.getpProcedureScore());
-        histS.setText(leaderboardModel.getHistFBLAScore());
     }
 
     @Override
@@ -76,5 +69,19 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public static void setLeaderboardModel(LeaderboardModel leaderboardModel) {
         LeaderboardActivity.leaderboardModel = leaderboardModel;
+    }
+
+    public void setText(LeaderboardModel leaderboardModel) {
+        actU.setText(leaderboardModel.getAccountingU());
+        introU.setText(leaderboardModel.getiFBLAU());
+        mathU.setText(leaderboardModel.getmU());
+        parlimentU.setText(leaderboardModel.getpProcedureU());
+        histU.setText(leaderboardModel.getHistFBLAU());
+
+        actS.setText(leaderboardModel.getAccountingScore());
+        introS.setText(leaderboardModel.getiFBLAScore());
+        mathS.setText(leaderboardModel.getmScore());
+        parlimentS.setText(leaderboardModel.getpProcedureScore());
+        histS.setText(leaderboardModel.getHistFBLAScore());
     }
 }

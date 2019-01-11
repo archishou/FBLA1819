@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.skooltchdev.multiplechoicequiz.Activities.HomeActivity;
+import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 
 import java.util.Map;
 
@@ -380,5 +381,9 @@ public class Firebase {
     }
     public static void setIntroU(String introU) {
         Firebase.introU = introU;
+    }
+    public static LeaderboardModel getLeaderboard () {
+        return new LeaderboardModel("1", "1", "1", "1", "1",
+                "jhon", "jhon", "smith", "jane", "jill");
     }
 }
