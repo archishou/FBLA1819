@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
@@ -93,7 +94,9 @@ public class HomeActivity extends AppCompatActivity {
                 shareDialog = new ShareDialog(homeActivity);
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                            .setContentUrl(Uri.parse("https://www.fbla-pbl.org/"))
+                            .setShareHashtag(
+                                    new ShareHashtag.Builder().setHashtag("#StudyFBLA").build())
                             .build();
                     shareDialog.show(linkContent);
                 }
