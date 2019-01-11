@@ -72,6 +72,18 @@ public class CategoriesActivity extends AppCompatActivity {
 
             }
         });
+        
+        
+         intro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestActivity.setTestModel(new IntroFBLA().getModel());
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                startActivity(intent);
+                //Starts IntroFBLA Quiz if the button for IntroFBLA is tapped
+
+            }
+        });
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
