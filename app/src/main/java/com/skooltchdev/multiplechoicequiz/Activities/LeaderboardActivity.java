@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.skooltchdev.multiplechoicequiz.Models.LeaderboardModel;
 import com.skooltchdev.multiplechoicequiz.R;
-import com.skooltchdev.multiplechoicequiz.Resources.Firebase;
 
 /**
  * Created by Archishmaan Peyyety on 1/10/19.
@@ -22,9 +22,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private TextView mathU, mathS;
     private TextView parlimentU, parlimentS;
 
-    private static LeaderboardModel leaderboardModel =
-            new LeaderboardModel("5", "3", "2", "3",
-                    "3", "h", "b", "o", "o", "o");
+    private static LeaderboardModel leaderboardModel;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -37,7 +35,6 @@ public class LeaderboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         actU = (TextView) findViewById(R.id.act_username_1);
         actS = (TextView) findViewById(R.id.acount_score_1);
 
@@ -53,23 +50,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         mathU = (TextView) findViewById(R.id.math_username_1);
         mathS = (TextView) findViewById(R.id.math_score_1);
 
-        leaderboardModel.setAccountingScore(String.valueOf(Firebase.getAccountingHighScore()[0]));
-        leaderboardModel.setAccountingU(String.valueOf(Firebase.getAccountingHighScore()[1]));
-
-        leaderboardModel.setHistFBLAScore(String.valueOf(Firebase.getHistHighScore()[0]));
-        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[1]);
-
-        leaderboardModel.setiFBLAScore(Firebase.getIntroHighScore()[0]);
-        leaderboardModel.setiFBLAU(Firebase.getIntroHighScore()[1]);
-
-        leaderboardModel.setmScore(Firebase.getMathHighScore()[0]);
-        leaderboardModel.setmU(Firebase.getMathHighScore()[1]);
-
-        leaderboardModel.setpProcedureScore(Firebase.getParliHighScore()[0]);
-        leaderboardModel.setpProcedureU(Firebase.getParliHighScore()[1]);
-
-        leaderboardModel.setHistFBLAScore(Firebase.getHistHighScore()[0]);
-        leaderboardModel.setHistFBLAU(Firebase.getHistHighScore()[1]);
+        System.out.println("%%%: " + leaderboardModel.getAccountingU());
 
         actU.setText(leaderboardModel.getAccountingU());
         introU.setText(leaderboardModel.getiFBLAU());

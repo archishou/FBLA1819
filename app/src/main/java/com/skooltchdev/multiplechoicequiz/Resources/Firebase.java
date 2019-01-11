@@ -37,6 +37,11 @@ public class Firebase {
     static int accountHigh, histHigh, parliHigh, mathHigh, introHigh;
     static String accountU, histU, parliU, mathU, introU;
 
+    public static void signOut() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+    }
+
     public static boolean isrSuccessful() {
         return rSuccessful;
     }
