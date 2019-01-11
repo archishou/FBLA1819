@@ -112,15 +112,16 @@ public class Firebase {
         return FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public static int readBranchData(final String branch) {
+
+    public static int readBranchData(String mainBranch, final String branch) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference = firebaseDatabase.getReference(mainBranch);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(getUser().getUid()).child(branch).getValue(Integer.class) != null)
-                setScore(dataSnapshot.child(getUser().getUid()).child(branch).getValue(Integer.class));
+                    setScore(dataSnapshot.child(getUser().getUid()).child(branch).getValue(Integer.class));
             }
 
             @Override
@@ -129,6 +130,9 @@ public class Firebase {
             }
         });
         return getScore();
+    }
+    public static int readBranchData(final String branch) {
+        return readBranchData("Users", branch);
     }
     public static void writeBranchData(final String branch, final int branchData) {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -385,5 +389,13 @@ public class Firebase {
     public static LeaderboardModel getLeaderboard () {
         return new LeaderboardModel("1", "1", "1", "1", "1",
                 "jhon", "jhon", "smith", "jane", "jill");
+    }
+    public static void submitBugReport(String name, String category, String comments) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        int reportNum = readBranchData("bugReports", "total_reports") + 1;
+        databaseReference = firebaseDatabase.getReference("bugReports");
+        //databaseReference.
+
     }
 }
